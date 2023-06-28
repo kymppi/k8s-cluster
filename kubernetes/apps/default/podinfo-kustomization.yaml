@@ -11,4 +11,5 @@ spec:
   sourceRef:
     kind: GitRepository
     name: podinfo
-  targetNamespace: default
+    namespace: default
+  targetNamespace: flux-system
