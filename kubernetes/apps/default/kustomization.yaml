@@ -6,3 +6,4 @@ resources:
   - ./podinfo-source.yaml
   - ./podinfo-kustomization.yaml
   - ./sops-test-secret.yaml
+  - ./whoami
