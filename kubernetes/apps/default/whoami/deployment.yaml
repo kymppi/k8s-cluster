@@ -7,7 +7,7 @@ spec:
   selector:
     matchLabels:
       app: whoami
-  replicas: 1
+  replicas: 5
   template:
     metadata:
       labels:
