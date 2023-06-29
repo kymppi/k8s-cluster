@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - ./longhorn.yaml
   - ./bjw-s.yaml
+  - ./external-secrets.yaml
