@@ -72,7 +72,6 @@ spec:
                 - IPC_LOCK
           resources:
             limits:
-              nofile: '262144'
               cpu: 100m
               memory: 512Mi
             requests:
