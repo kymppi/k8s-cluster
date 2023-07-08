@@ -31,10 +31,10 @@ spec:
             requests:
               cpu: 100m
               memory: 100Mi
-  volumes:
-    - name: data
-      persistentVolumeClaim:
-        claimName: plausible-db-pvc
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: plausible-db-pvc
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -78,16 +78,16 @@ spec:
             requests:
               cpu: 100m
               memory: 512Mi
-  volumes:
-    - name: clickhouse-config
-      configMap:
-        name: clickhouse-config
-    - name: clickhouse-user-config
-      configMap:
-        name: clickhouse-user-config
-    - name: event-data
-      persistentVolumeClaim:
-        claimName: plausible-events-pvc
+      volumes:
+        - name: clickhouse-config
+          configMap:
+            name: clickhouse-config
+        - name: clickhouse-user-config
+          configMap:
+            name: clickhouse-user-config
+        - name: event-data
+          persistentVolumeClaim:
+            claimName: plausible-events-pvc
 ---
 apiVersion: apps/v1
 kind: Deployment
