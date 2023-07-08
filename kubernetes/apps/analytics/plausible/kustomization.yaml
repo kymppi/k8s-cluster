@@ -10,8 +10,10 @@ metadata:
   name: plausible
 configMapGenerator:
   - name: clickhouse-config
+    namespace: analytics
     files:
       - clickhouse-config.xml
   - name: clickhouse-user-config
+    namespace: analytics
     files:
       - clickhouse-user-config.xml
