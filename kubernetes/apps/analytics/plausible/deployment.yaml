@@ -116,6 +116,8 @@ spec:
             - name: POSTGRES_PASSWORD
               value: postgres
           envFrom:
+            - secretRef:
+                name: plausible-external-secret-secret
             - configMapRef:
                 name: plausible-conf
           resources:

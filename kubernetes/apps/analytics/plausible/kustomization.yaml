@@ -5,6 +5,8 @@ resources:
   - ./deployment.yaml
   - ./service.yaml
   - ./ingress.yaml
+  - ./config.yaml
+  - ./external-secrets.yaml
 metadata:
   namespace: analytics
   name: plausible
