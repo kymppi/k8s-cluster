@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: plausible-db
+  namespace: analytics
 spec:
   replicas: 1
   selector:
@@ -39,6 +40,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: plausible-events-db
+  namespace: analytics
 spec:
   replicas: 1
   selector:
@@ -98,6 +100,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: plausible
+  namespace: analytics
 spec:
   replicas: 1
   selector:
