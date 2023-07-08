@@ -5,6 +5,9 @@ resources:
   - ./volume.yaml
   - ./service.yaml
   - ./ingress.yaml
+metadata:
+  namespace: analytics
+  name: plausible
 configMapGenerator:
   - name: clickhouse-config
     files:
