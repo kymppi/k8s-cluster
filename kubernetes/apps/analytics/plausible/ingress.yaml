@@ -13,5 +13,6 @@ spec:
             backend:
               service:
                 name: plausible
+                namespace: analytics
                 port:
                   number: 8000
