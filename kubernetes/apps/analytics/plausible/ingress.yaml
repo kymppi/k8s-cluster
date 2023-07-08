@@ -3,6 +3,7 @@ kind: Ingress
 apiVersion: networking.k8s.io/v1
 metadata:
   name: plausible
+  namespace: analytics
 spec:
   rules:
     - http:

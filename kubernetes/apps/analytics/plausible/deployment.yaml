@@ -19,7 +19,7 @@ spec:
           image: postgres:14-alpine
           restartPolicy: Always
           volumeMounts:
-            - name: db-data
+            - name: data
               mountPath: /var/lib/postgresql/data
           env:
             - name: POSTGRES_PASSWORD
@@ -32,7 +32,7 @@ spec:
               cpu: 100m
               memory: 100Mi
   volumes:
-    - name: db-data
+    - name: data
       persistentVolumeClaim:
         claimName: plausible-db-pvc
 ---
@@ -108,9 +108,9 @@ spec:
         - name: plausible
           image: plausible/analytics:v1.5
           restartPolicy: Always
-          command: ['/bin/sh', '-c']
+          command: [/bin/sh, -c]
           args:
-            - 'sleep 10 && /entrypoint.sh db createdb && /entrypoint.sh db migrate && /entrypoint.sh run'
+            - sleep 10 && /entrypoint.sh db createdb && /entrypoint.sh db migrate && /entrypoint.sh run
           ports:
             - containerPort: 8000
           env:
