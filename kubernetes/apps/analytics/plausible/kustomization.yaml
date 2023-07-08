@@ -5,3 +5,10 @@ resources:
   - ./volume.yaml
   - ./service.yaml
   - ./ingress.yaml
+configMapGenerator:
+  - name: clickhouse-config
+    files:
+      - clickhouse-config.xml
+  - name: clickhouse-user-config
+    files:
+      - clickhouse-user-config.xml
