@@ -6,12 +6,10 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: longhorn-per-volume
+  storageClassName: longhorn-per-volume-unencrypted
   resources:
     requests:
       storage: 1Gi
-  storageClassParameters:
-    encrypted: 'false'
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -21,9 +19,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: longhorn-per-volume
+  storageClassName: longhorn-per-volume-unencrypted
   resources:
     requests:
       storage: 512Mi
-  storageClassParameters:
-    encrypted: 'false'

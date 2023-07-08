@@ -1,7 +1,7 @@
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
-  name: longhorn-per-volume
+  name: longhorn-per-volume-unencrypted
   annotations:
     kustomize.toolkit.fluxcd.io/substitute: disabled
 provisioner: driver.longhorn.io
@@ -11,7 +11,7 @@ parameters:
   staleReplicaTimeout: '2880' # 48 hours in minutes
   fromBackup: ''
   fsType: ext4
-  encrypted: 'true'
+  encrypted: 'false'
   # per volume secret which utilizes the `pvc.name` and `pvc.namespace` template parameters
   csi.storage.k8s.io/provisioner-secret-name: ${pvc.name}
   csi.storage.k8s.io/provisioner-secret-namespace: ${pvc.namespace}
