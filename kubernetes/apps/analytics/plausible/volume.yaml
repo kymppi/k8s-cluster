@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: plausible-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: longhorn-per-volume
+  resources:
+    requests:
+      storage: 2Gi

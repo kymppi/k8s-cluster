@@ -1,0 +1,123 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plausible-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: plausible-db
+  template:
+    metadata:
+      labels:
+        app: plausible-db
+    spec:
+      containers:
+        - name: plausible-db
+          image: postgres:14-alpine
+          restartPolicy: Always
+          volumeMounts:
+            - name: db-data
+              mountPath: /var/lib/postgresql/data
+          env:
+            - name: POSTGRES_PASSWORD
+              value: postgres
+          resources:
+            limits:
+              cpu: 100m
+              memory: 100Mi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plausible-events-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: plausible-events-db
+  template:
+    metadata:
+      labels:
+        app: plausible-events-db
+    spec:
+      containers:
+        - name: plausible-events-db
+          image: clickhouse/clickhouse-server:22.8.13.20-alpine
+          restartPolicy: Always
+          volumeMounts:
+            - name: event-data
+              mountPath: /var/lib/clickhouse
+            - name: clickhouse-config
+              mountPath: /etc/clickhouse-server/config.d/logging.xml
+              subPath: logging.xml
+              readOnly: true
+            - name: clickhouse-user-config
+              mountPath: /etc/clickhouse-server/users.d/logging.xml
+              subPath: logging.xml
+              readOnly: true
+          securityContext:
+            capabilities:
+              add:
+                - IPC_LOCK
+          resources:
+            limits:
+              nofile: '262144'
+              cpu: 100m
+              memory: 512Mi
+            requests:
+              cpu: 100m
+              memory: 512Mi
+  volumes:
+    - name: clickhouse-config
+      configMap:
+        name: clickhouse-config
+    - name: clickhouse-user-config
+      configMap:
+        name: clickhouse-user-config
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plausible
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: plausible
+  template:
+    metadata:
+      labels:
+        app: plausible
+    spec:
+      containers:
+        - name: plausible
+          image: plausible/analytics:v1.5
+          restartPolicy: Always
+          command: ['/bin/sh', '-c']
+          args:
+            - 'sleep 10 && /entrypoint.sh db createdb && /entrypoint.sh db migrate && /entrypoint.sh run'
+          ports:
+            - containerPort: 8000
+          env:
+            - name: POSTGRES_PASSWORD
+              value: postgres
+          envFrom:
+            - configMapRef:
+                name: plausible-conf
+          resources:
+            limits:
+              cpu: 150m
+              memory: 200Mi
+            requests:
+              cpu: 150m
+              memory: 200Mi
+  volumes:
+    - name: db-data
+      emptyDir: {}
+    - name: event-data
+      emptyDir: {}
