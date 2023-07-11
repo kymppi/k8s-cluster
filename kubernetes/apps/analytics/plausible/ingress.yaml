@@ -1,17 +1,15 @@
 ---
-kind: Ingress
-apiVersion: networking.k8s.io/v1
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
 metadata:
   name: plausible
   namespace: analytics
 spec:
-  rules:
-    - http:
-        paths:
-          - path: /plausible
-            pathType: Prefix
-            backend:
-              service:
-                name: plausible
-                port:
-                  number: 8000
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`testing.midka.dev`)
+      kind: Rule
+      services:
+        - name: plausible
+          port: 8000
