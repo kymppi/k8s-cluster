@@ -95,6 +95,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: busybox1
+  namespace: analytics
   labels:
     app: busybox1
 spec:
