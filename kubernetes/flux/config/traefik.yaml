@@ -5,10 +5,10 @@ metadata:
   name: traefik
   namespace: kube-system
 spec:
+  #- "--log.level=DEBUG"
+  #- "--certificatesresolvers.le.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory"
   valuesContent: |-
     additionalArguments:
-      - "--log.level=DEBUG"
       - "--certificatesresolvers.le.acme.email=ssl@midka.dev"
       - "--certificatesresolvers.le.acme.storage=/data/acme.json"
       - "--certificatesresolvers.le.acme.tlschallenge=true"
-      - "--certificatesresolvers.le.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory"
