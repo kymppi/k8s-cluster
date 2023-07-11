@@ -42,7 +42,7 @@ metadata:
   name: plausible-events-db
   namespace: analytics
 spec:
-  replicas: 0
+  replicas: 1
   selector:
     matchLabels:
       app: plausible-events-db
