@@ -14,4 +14,4 @@ spec:
         - name: plausible
           port: 8000
   tls:
-    certResolver: le
+    certResolver: le-staging
