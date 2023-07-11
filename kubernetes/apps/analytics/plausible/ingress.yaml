@@ -6,7 +6,7 @@ metadata:
   namespace: analytics
 spec:
   entryPoints:
-    - web
+    - websecure
   routes:
     - match: Host(`testing.midka.dev`)
       kind: Rule
