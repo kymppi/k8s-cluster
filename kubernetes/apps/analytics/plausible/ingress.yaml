@@ -8,7 +8,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`testing.midka.dev`)
+    - match: Host(`plausible.65.21.101.130.nip.io`)
       kind: Rule
       services:
         - name: plausible
