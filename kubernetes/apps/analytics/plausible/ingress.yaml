@@ -8,10 +8,10 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`plausible.65.21.101.130.nip.io`)
+    - match: Host(`plausible.midka.dev`)
       kind: Rule
       services:
         - name: plausible
           port: 8000
   tls:
-    certResolver: le-staging
+    certResolver: le

@@ -7,7 +7,7 @@ metadata:
 data:
   # Add your configuration key-value pairs here
   DISABLE_REGISTRATION: invite_only
-  BASE_URL: https://plausible.65.21.101.130.nip.io:443
+  BASE_URL: https://plausible.midka.dev:443
   MAILER_EMAIL: plausible@midka.dev
   SMTP_HOST_ADDR: mail.qdi.fi
   SMTP_HOST_PORT: '587'
