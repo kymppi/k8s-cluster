@@ -13,3 +13,5 @@ spec:
       services:
         - name: plausible
           port: 8000
+  tls:
+    certResolver: le
