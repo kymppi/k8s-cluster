@@ -90,6 +90,29 @@ spec:
         - name: event-data
           persistentVolumeClaim:
             claimName: plausible-events-pvc
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox1
+  labels:
+    app: busybox1
+spec:
+  containers:
+    - image: busybox
+      command:
+        - sleep
+        - '3600'
+      imagePullPolicy: IfNotPresent
+      name: busybox
+      volumeMounts:
+        - name: data
+          mountPath: /mnt
+  restartPolicy: Always
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: plausible-events-pvc
 # ---
 # apiVersion: apps/v1
 # kind: Deployment
