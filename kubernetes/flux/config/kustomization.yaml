@@ -5,3 +5,4 @@ resources:
   - ./gitrepo.yaml
   - ./flux.yaml
   - ./cluster.yaml
+  - ./traefik.yaml
