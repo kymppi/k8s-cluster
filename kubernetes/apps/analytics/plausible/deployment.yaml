@@ -61,12 +61,12 @@ spec:
             - name: event-data
               mountPath: /var/lib/clickhouse
             - name: clickhouse-config
-              mountPath: /etc/clickhouse-server/config.d/logging.xml
-              subPath: logging.xml
+              mountPath: /etc/clickhouse-server/config.d/config.xml
+              subPath: clickhouse-config.xml
               readOnly: true
             - name: clickhouse-user-config
-              mountPath: /etc/clickhouse-server/users.d/logging.xml
-              subPath: logging.xml
+              mountPath: /etc/clickhouse-server/users.d/config.xml
+              subPath: clickhouse-user-config.xml
               readOnly: true
           securityContext:
             capabilities:
