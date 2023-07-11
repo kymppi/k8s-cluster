@@ -11,6 +11,7 @@ spec:
       - "--certificatesresolvers.le.acme.email=ssl@midka.dev"
       - "--certificatesresolvers.le.acme.storage=/data/acme.json"
       - "--certificatesresolvers.le.acme.tlschallenge=true"
+      - "--certificatesresolvers.le.acme.caServer=https://acme-v02.api.letsencrypt.org/directory"
       - "--certificatesresolvers.le-staging.acme.email=ssl@midka.dev"
       - "--certificatesresolvers.le-staging.acme.storage=/data/acme-staging.json"
       - "--certificatesresolvers.le-staging.acme.tlschallenge=true"
