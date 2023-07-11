@@ -18,6 +18,8 @@ spec:
         - name: plausible-db
           image: postgres:15-alpine
           restartPolicy: Always
+          ports:
+            - containerPort: 5432
           volumeMounts:
             - name: data
               # if using "/var/lib/postgresql/data" it gives an initialization error because its a mount point
@@ -53,6 +55,8 @@ spec:
         - name: plausible-events-db
           image: clickhouse/clickhouse-server:22.8.13.20-alpine
           restartPolicy: Always
+          ports:
+            - containerPort: 8123
           volumeMounts:
             - name: event-data
               mountPath: /var/lib/clickhouse
@@ -75,6 +79,7 @@ spec:
             requests:
               cpu: 100m
               memory: 512Mi
+
       volumes:
         - name: clickhouse-config
           configMap:

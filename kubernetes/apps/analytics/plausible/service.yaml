@@ -11,3 +11,29 @@ spec:
       targetPort: 8000
   selector:
     app: plausible
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: plausible-events-db
+  namespace: analytics
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8123
+      targetPort: 8123
+  selector:
+    app: plausible-events-db
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: plausible-db
+  namespace: analytics
+spec:
+  type: ClusterIP
+  ports:
+    - port: 5432
+      targetPort: 5432
+  selector:
+    app: plausible-db
