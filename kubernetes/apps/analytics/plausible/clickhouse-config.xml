@@ -13,4 +13,17 @@
     <asynchronous_metric_log remove="remove" />
     <session_log remove="remove" />
     <part_log remove="remove" />
+
+    <storage_configuration>
+        <disks>
+            <backups>
+                <type>local</type>
+                <path>/tmp/</path>
+            </backups>
+        </disks>
+    </storage_configuration>
+    <backups>
+        <allowed_disk>backups</allowed_disk>
+        <allowed_path>/tmp/</allowed_path>
+    </backups>
 </clickhouse>
