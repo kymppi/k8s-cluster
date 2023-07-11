@@ -20,7 +20,8 @@ spec:
           restartPolicy: Always
           volumeMounts:
             - name: data
-              mountPath: /var/lib/postgresql/data
+              # if using "/var/lib/postgresql/data" it gives an initialization error because its a mount point
+              mountPath: /var/lib/postgresql
           env:
             - name: POSTGRES_PASSWORD
               value: postgres
