@@ -132,7 +132,7 @@ spec:
     spec:
       containers:
         - name: plausible
-          image: plausible/analytics:v2.0.0
+          image: plausible/analytics:v1.5
           restartPolicy: Always
           command: [/bin/sh, -c]
           args:
