@@ -45,11 +45,11 @@ spec:
           imagePullPolicy: Always
           command:
             - './cmd/writefreely/writefreely'
-            - '-gen-keys'
-            - '&&'
-            - './cmd/writefreely/writefreely'
             - 'db'
             - 'init'
+            - '&&'
+            - './cmd/writefreely/writefreely'
+            - '-gen-keys'
           volumeMounts:
             - name: config
               mountPath: /go/config.ini
