@@ -61,7 +61,8 @@ spec:
               mountPath: /go/data
       volumes:
         - name: workdir
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: writefreely-keys
         - name: config
           configMap:
             name: wfconfig
