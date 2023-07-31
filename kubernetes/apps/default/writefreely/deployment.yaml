@@ -23,7 +23,7 @@ spec:
           imagePullPolicy: Always
           volumeMounts:
             - name: config
-              mountPath: /go/config.ini
+              mountPath: /config/config.ini
               subPath: config.ini
             - name: data
               mountPath: /data/
