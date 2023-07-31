@@ -52,6 +52,8 @@ spec:
               subPath: config.ini
             - name: workdir
               mountPath: /go/keys
+            - name: data
+              mountPath: /go/data
       volumes:
         - name: workdir
           emptyDir: {}
