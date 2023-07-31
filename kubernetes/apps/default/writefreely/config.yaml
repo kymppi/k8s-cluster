@@ -9,7 +9,7 @@ data:
     type = sqlite3
     filename = /data/writefreely.db
     [app]
-    site_name         = i11l.blog Writefreely instance
+    site_name         = i11l.blog
     host              = https://i11l.blog
     theme             = write
     disable_js         = false
