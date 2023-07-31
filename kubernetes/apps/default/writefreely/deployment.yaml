@@ -30,6 +30,16 @@ spec:
           ports:
             - containerPort: 8080
       initContainers:
+        - name: create database
+          image: alpine
+          imagePullPolicy: Always
+          command:
+            - '/bin/sh'
+            - '-c'
+            - 'touch /go/data/writefreely.db'
+          volumeMounts:
+            - name: data
+              mountPath: /go/data
         - name: install
           image: writeas/writefreely:0.12.0
           imagePullPolicy: Always
