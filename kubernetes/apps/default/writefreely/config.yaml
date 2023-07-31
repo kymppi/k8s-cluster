@@ -1,0 +1,28 @@
+﻿apiVersion: v1
+kind: ConfigMap
+data:
+  config.ini: |
+    [server]
+    port        = 8080
+    bind = 0.0.0.0
+    [database]
+    type = sqlite3
+    filename = /go/data/writefreely.db
+    [app]
+    site_name         = i11l.blog Writefreely instance
+    host              = https://i11l.blog
+    theme             = write
+    disable_js         = false
+    webfonts          = true
+    single_user       = false
+    open_registration = false
+    min_username_len  = 3
+    max_blogs         = 15
+    federation        = true
+    public_stats       = true
+    private           = false
+    update_checks     = true
+    monetization      = false
+metadata:
+  name: wfconfig
+  namespace: default

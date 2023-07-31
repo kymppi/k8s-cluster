@@ -5,3 +5,4 @@ namespace: default
 resources:
   - ./sops-test-secret.yaml
   - ./whoami
+  - ./writefreely
