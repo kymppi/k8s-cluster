@@ -29,19 +29,19 @@ spec:
               mountPath: /data/
           ports:
             - containerPort: 8080
-      initContainers:
-        - name: install
-          image: ghcr.io/kymppi/writefreely-docker:latest
-          imagePullPolicy: Always
-          command:
-            - './cmd/writefreely/writefreely'
-            - '-gen-keys'
-          volumeMounts:
-            - name: config
-              mountPath: /config/config.ini
-              subPath: config.ini
-            - name: data
-              mountPath: /data/
+      # initContainers:
+      #   - name: install
+      #     image: ghcr.io/kymppi/writefreely-docker:latest
+      #     imagePullPolicy: Always
+      #     command:
+      #       - './cmd/writefreely/writefreely'
+      #       - '-gen-keys'
+      #     volumeMounts:
+      #       - name: config
+      #         mountPath: /config/config.ini
+      #         subPath: config.ini
+      #       - name: data
+      #         mountPath: /data/
       volumes:
         - name: config
           configMap:
