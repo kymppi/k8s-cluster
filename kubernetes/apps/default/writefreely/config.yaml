@@ -7,7 +7,7 @@ data:
     bind = 0.0.0.0
     [database]
     type = sqlite3
-    filename = /go/data/writefreely.db
+    filename = /data/writefreely.db
     [app]
     site_name         = i11l.blog Writefreely instance
     host              = https://i11l.blog
