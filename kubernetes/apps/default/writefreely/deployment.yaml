@@ -34,8 +34,7 @@ spec:
           image: esolang/sqlite3:latest
           imagePullPolicy: Always
           command:
-            - 'sqlite3'
-            - '/go/data/writefreely.db'
+            - 'sqlite3 /go/data/writefreely.db'
           volumeMounts:
             - name: data
               mountPath: /go/data
