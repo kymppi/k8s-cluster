@@ -30,7 +30,7 @@ spec:
           ports:
             - containerPort: 8080
       initContainers:
-        - name: create database
+        - name: create-database
           image: alpine
           imagePullPolicy: Always
           command:
