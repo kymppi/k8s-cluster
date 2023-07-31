@@ -6,5 +6,5 @@ metadata:
   namespace: default
 resources:
   - config.yaml
-  #- deployment.yaml
+  - deployment.yaml
   - pvc.yaml
