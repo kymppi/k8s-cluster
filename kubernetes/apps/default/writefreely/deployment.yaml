@@ -15,6 +15,10 @@ spec:
       labels:
         app: writefreely
     spec:
+      securityContext:
+        runAsUser: 2
+        runAsGroup: 2
+        fsGroup: 2
       imagePullSecrets:
         - name: ghcr-io-registry
       containers:
