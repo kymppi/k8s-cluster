@@ -23,6 +23,7 @@ data:
     private           = false
     update_checks     = true
     monetization      = false
+    local_timeline = true
 metadata:
   name: wfconfig
   namespace: default
