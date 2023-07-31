@@ -82,7 +82,7 @@ metadata:
   namespace: default
 spec:
   entryPoints:
-    - web
+    - websecure
   routes:
     - match: Host(`i11l.blog`)
       kind: Rule
