@@ -79,6 +79,6 @@ spec:
           kind: Service
   tls:
     certResolver: le
-  middleware:
+  middlewares:
     - name: redirect
       namespace: kube-system
