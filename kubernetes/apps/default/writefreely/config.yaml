@@ -24,6 +24,7 @@ data:
     update_checks     = true
     monetization      = false
     local_timeline = true
+    user_invites = user
 metadata:
   name: wfconfig
   namespace: default
