@@ -33,6 +33,13 @@ spec:
               mountPath: /data/
           ports:
             - containerPort: 8080
+          resources:
+            requests:
+              cpu: 100m
+              memory: 20Mi
+            limits:
+              cpu: 200m
+              memory: 200Mi
       # initContainers:
       #   - name: install
       #     image: ghcr.io/kymppi/writefreely-docker:latest
