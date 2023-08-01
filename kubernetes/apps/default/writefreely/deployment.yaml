@@ -40,19 +40,6 @@ spec:
             limits:
               cpu: 200m
               memory: 200Mi
-      # initContainers:
-      #   - name: install
-      #     image: ghcr.io/kymppi/writefreely-docker:latest
-      #     imagePullPolicy: Always
-      #     command:
-      #       - './cmd/writefreely/writefreely'
-      #       - '-gen-keys'
-      #     volumeMounts:
-      #       - name: config
-      #         mountPath: /config/config.ini
-      #         subPath: config.ini
-      #       - name: data
-      #         mountPath: /data/
       volumes:
         - name: config
           configMap:
