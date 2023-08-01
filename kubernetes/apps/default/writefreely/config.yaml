@@ -25,6 +25,7 @@ data:
     monetization      = false
     local_timeline = true
     user_invites = user
+    open_deletion = true
 metadata:
   name: wfconfig
   namespace: default
