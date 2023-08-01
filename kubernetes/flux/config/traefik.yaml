@@ -16,3 +16,13 @@ spec:
       - "--certificatesresolvers.le-staging.acme.storage=/data/acme-staging.json"
       - "--certificatesresolvers.le-staging.acme.tlschallenge=true"
       - "--certificatesresolvers.le-staging.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory"
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect
+  namespace: kube-system
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true

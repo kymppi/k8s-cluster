@@ -69,6 +69,7 @@ metadata:
 spec:
   entryPoints:
     - websecure
+    - web
   routes:
     - match: Host(`i11l.blog`)
       kind: Rule
@@ -78,3 +79,6 @@ spec:
           kind: Service
   tls:
     certResolver: le
+  middleware:
+    - name: redirect
+      namespace: kube-system
