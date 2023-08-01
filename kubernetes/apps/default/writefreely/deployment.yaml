@@ -77,8 +77,8 @@ spec:
         - name: writefreely
           port: 80
           kind: Service
+      middlewares:
+        - name: redirect
+          namespace: kube-system
   tls:
     certResolver: le
-  middlewares:
-    - name: redirect
-      namespace: kube-system
