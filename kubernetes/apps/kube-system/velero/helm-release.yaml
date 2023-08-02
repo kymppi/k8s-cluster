@@ -49,11 +49,11 @@ spec:
       enabled: true
       serviceMonitor:
         enabled: true
-    snapshotsEnabled: true
+    snapshotsEnabled: false
     upgradeCRDs: false
     cleanUpCRDs: false
-    deployRestic: true
-    restic:
+    deployNodeAgent: true
+    nodeAgent:
       podVolumePath: /var/lib/kubelet/pods
       privileged: false
       tolerations:
