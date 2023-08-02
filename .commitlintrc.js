@@ -4,38 +4,46 @@
 const fs = require('fs');
 const path = require('path');
 
-const rootScopes = ['flux', 'repository']; // default scopes
+const CLUSTER_PATH = 'kubernetes/apps';
 
+// Default scopes are flux and repository
+const rootScopes = ['flux', 'repository'];
+
+// Get all app scopes
 const appsScopes = fs
-  .readdirSync(path.resolve(__dirname, 'kubernetes/apps'))
+  .readdirSync(path.resolve(__dirname, CLUSTER_PATH))
   .map((namespace) => {
-    // check if namespace is a directory
+    // Check if namespace is a directory
     if (
       !fs
-        .statSync(path.resolve(__dirname, 'kubernetes/apps', namespace))
+        .statSync(path.resolve(__dirname, CLUSTER_PATH, namespace))
         .isDirectory()
     ) {
       return []; // return [] to prevent undefined
     }
 
+    // Get all namespace scopes
     const namespaceScopes = fs.readdirSync(
-      path.resolve(__dirname, 'kubernetes/apps', namespace)
+      path.resolve(__dirname, CLUSTER_PATH, namespace)
     );
 
+    // Get only real namespace scopes
     const realNamespaceScopes = namespaceScopes.filter((namespaceScope) =>
       fs
         .statSync(
-          path.resolve(__dirname, 'kubernetes/apps', namespace, namespaceScope)
+          path.resolve(__dirname, CLUSTER_PATH, namespace, namespaceScope)
         )
         .isDirectory()
     );
 
+    // Return namespace scopes
     return realNamespaceScopes.map(
       (realNamespaceScope) => `${namespace}/${realNamespaceScope}`
     );
   })
   .reduce((scopes, namespaceScopes) => scopes.concat(namespaceScopes), []);
 
+// Return all scopes
 const scopes = rootScopes.concat(appsScopes);
 
 /** @type {import('cz-git').UserConfig} */
