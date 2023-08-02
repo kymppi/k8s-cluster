@@ -27,6 +27,7 @@ spec:
         name: default
         bucket: kube
         config:
+          region: us-east-1
           s3ForcePathStyle: true
           s3Url: https://s3.midka.dev
           publicUrl: https://jupiter.midka.dev
