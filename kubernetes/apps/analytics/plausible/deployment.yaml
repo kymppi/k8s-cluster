@@ -144,7 +144,7 @@ spec:
               value: postgres
           envFrom:
             - secretRef:
-                name: plausible-external-secret-secret
+                name: plausible-external-secret
             - configMapRef:
                 name: plausible-conf
           resources:
