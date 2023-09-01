@@ -6,3 +6,4 @@ resources:
   - ./bjw-s.yaml
   - ./external-secrets.yaml
   - ./vmware-tanzu.yaml
+  - ./cilium.yaml
