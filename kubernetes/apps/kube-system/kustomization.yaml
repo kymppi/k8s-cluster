@@ -5,4 +5,4 @@ resources:
   - ./external-secrets/ks.yaml
   - ./namespace.yaml
   - ./velero
-  - ./cilium
+  - ./cilium/ks.yaml
