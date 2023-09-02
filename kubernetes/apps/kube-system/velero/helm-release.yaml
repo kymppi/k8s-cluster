@@ -50,7 +50,7 @@ spec:
       enabled: true
       serviceMonitor:
         enabled: true
-    snapshotsEnabled: false
+    snapshotsEnabled: true # omfg, when it was false, it didnt backup the actual volume data
     backupsEnabled: true
     upgradeCRDs: false
     cleanUpCRDs: false
