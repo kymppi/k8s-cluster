@@ -26,65 +26,105 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    # autoDirectNodeRoutes: true
+    # bpf:
+    #   masquerade: true
+    # bgp:
+    #   enabled: false
+    # cluster:
+    #   name: midka
+    #   id: 1
+    # containerRuntime:
+    #   integration: containerd
+    #   socketPath: /var/run/k3s/containerd/containerd.sock
+    # endpointRoutes:
+    #   enabled: true
+    # # hubble:
+    # #   enabled: false
+    # #   metrics:
+    # #     enabled:
+    # #       - dns:query
+    # #       - drop
+    # #       - tcp
+    # #       - flow
+    # #       - port-distribution
+    # #       - icmp
+    # #       - http
+    # #     serviceMonitor:
+    # #       enabled: false
+    # #   relay:
+    # #     enabled: true
+    # #     rollOutPods: true
+    # #   ui:
+    # #     enabled: true
+    # #     rollOutPods: true
+    # #     ingress:
+    # #       enabled: true
+    # #       className: internal
+    # #       annotations:
+    # #         hajimari.io/icon: simple-icons:cilium
+
+    # ipam:
+    #   mode: kubernetes
+    # k8sServiceHost: '10.43.0.10'
+    # k8sServicePort: 6443
+    # ipv4NativeRoutingCIDR: '172.30.0.0/16'
+    # kubeProxyReplacement: strict
+    # kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
+    # operator:
+    #   rollOutPods: true
+    # rollOutCiliumPods: true
+    # l2announcements:
+    #   enabled: true
+    #   leaseDuration: 120s
+    #   leaseRenewDeadline: 60s
+    #   leaseRetryPeriod: 1s
+    # loadBalancer:
+    #   algorithm: 'maglev'
+    #   mode: 'dsr'
+    # localRedirectPolicy: true
+    # securityContext:
+    #   privileged: true
+    # tunnel: 'disabled'
+    # ipv6:
+    #   enabled: true
+
     autoDirectNodeRoutes: true
-    bpf:
-      masquerade: true
     bgp:
       enabled: false
+    bpf:
+      masquerade: true
     cluster:
-      name: midka
       id: 1
+      name: midka
     containerRuntime:
       integration: containerd
       socketPath: /var/run/k3s/containerd/containerd.sock
     endpointRoutes:
       enabled: true
-    # hubble:
-    #   enabled: false
-    #   metrics:
-    #     enabled:
-    #       - dns:query
-    #       - drop
-    #       - tcp
-    #       - flow
-    #       - port-distribution
-    #       - icmp
-    #       - http
-    #     serviceMonitor:
-    #       enabled: false
-    #   relay:
-    #     enabled: true
-    #     rollOutPods: true
-    #   ui:
-    #     enabled: true
-    #     rollOutPods: true
-    #     ingress:
-    #       enabled: true
-    #       className: internal
-    #       annotations:
-    #         hajimari.io/icon: simple-icons:cilium
-
     ipam:
       mode: kubernetes
-    k8sServiceHost: '10.43.0.10'
+    ipv4NativeRoutingCIDR: 172.30.0.0/16
+    ipv6:
+      enabled: true
+    k8sServiceHost: 10.43.0.10
     k8sServicePort: 6443
-    ipv4NativeRoutingCIDR: '172.30.0.0/16'
     kubeProxyReplacement: strict
     kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
-    operator:
-      rollOutPods: true
-    rollOutCiliumPods: true
     l2announcements:
       enabled: true
       leaseDuration: 120s
       leaseRenewDeadline: 60s
       leaseRetryPeriod: 1s
     loadBalancer:
-      algorithm: 'maglev'
-      mode: 'dsr'
+      algorithm: maglev
+      mode: dsr
     localRedirectPolicy: true
+    operator:
+      rollOutPods: true
+    rollOutCiliumPods: true
     securityContext:
       privileged: true
-    tunnel: 'disabled'
-    ipv6:
-      enabled: true
+    tunnel: disabled
+    # ipv6:
+    #   enabled: true
