@@ -88,3 +88,7 @@ spec:
     tunnel: 'disabled'
     ipv6:
       enabled: true
+    prometheus:
+      serviceMonitor:
+        enabled: false
+        trustCRDsExist: true
