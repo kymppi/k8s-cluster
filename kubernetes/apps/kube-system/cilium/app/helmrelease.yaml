@@ -32,7 +32,7 @@ spec:
     bgp:
       enabled: false
     cluster:
-      name: arisu-cluster
+      name: midka
       id: 1
     containerRuntime:
       integration: containerd
@@ -97,3 +97,5 @@ spec:
     securityContext:
       privileged: true
     tunnel: 'disabled'
+    ipv6:
+      enabled: true
