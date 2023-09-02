@@ -55,9 +55,6 @@ spec:
       relay:
         enabled: true
         rollOutPods: true
-        prometheus:
-          serviceMonitor:
-            enabled: false
       ui:
         enabled: true
         rollOutPods: true
@@ -76,14 +73,6 @@ spec:
     kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
     operator:
       rollOutPods: true
-      prometheus:
-        enabled: true
-        serviceMonitor:
-          enabled: true
-    prometheus:
-      enabled: true
-      serviceMonitor:
-        enabled: false
     rollOutCiliumPods: true
     l2announcements:
       enabled: true
