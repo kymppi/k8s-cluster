@@ -2,13 +2,15 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-cilium
+  name: cluster-apps-velero
   namespace: kube-system
 spec:
   interval: 10m
-  path: './kubernetes/apps/kube-system/cilium/app'
+  path: './kubernetes/apps/kube-system/velero/app'
   prune: true
   sourceRef:
     kind: GitRepository
     name: cluster
   wait: true
+  dependsOn:
+    - name: cluster-apps-external-secrets
