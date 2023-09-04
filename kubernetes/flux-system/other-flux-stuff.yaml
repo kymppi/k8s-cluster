@@ -10,9 +10,9 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: cluster
+    name: flux-system
   dependsOn:
-    - name: cluster
+    - name: flux-system
   decryption:
     provider: sops
     secretRef:
