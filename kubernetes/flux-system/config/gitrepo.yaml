@@ -2,15 +2,15 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
-  name: flux-system
+  name: cluster
   namespace: flux-system
 spec:
   interval: 1m0s
   ref:
     branch: main
   secretRef:
-    name: flux-system
-  url: ssh://git@github.com/kymppi/k8s-cluster
+    name: git-credentials
+  url: https://github.com/kymppi/k8s-cluster.git
   ignore: |
     # exclude all
     /*

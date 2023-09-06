@@ -1,0 +1,7 @@
+version: '3'
+
+tasks:
+  kubernetes:bootstrap:
+    cmds:
+      - kubectl apply -k ./kubernetes/bootstrap
+      - kubectl apply -k ./kubernetes/flux-system/config
