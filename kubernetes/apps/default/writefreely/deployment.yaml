@@ -77,5 +77,5 @@ spec:
         - name: writefreely
           port: 80
           kind: Service
-  tls:
-    certResolver: le
+  # tls:
+  #   certResolver: le
