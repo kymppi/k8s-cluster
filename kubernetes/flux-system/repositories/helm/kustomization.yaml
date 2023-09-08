@@ -7,3 +7,4 @@ resources:
   - ./external-secrets.yaml
   - ./vmware-tanzu.yaml
   - ./cilium.yaml
+  - ./traefik.yaml
