@@ -4,3 +4,4 @@ kind: Kustomization
 namespace: kube-system
 resources:
   - ./helmrelease.yaml
+  - ./ip-pool.yaml
