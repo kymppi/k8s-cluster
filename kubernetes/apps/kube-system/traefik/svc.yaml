@@ -7,11 +7,13 @@ metadata:
   labels:
     app.kubernetes.io/instance: traefik
     app.kubernetes.io/name: traefik
+  annotations:
+    'io.cilium/lb-ipam-ips': '65.21.101.130'
 spec:
   selector:
     app.kubernetes.io/instance: traefik
     app.kubernetes.io/name: traefik
-  type: ClusterIP
+  type: LoadBalancer
   ipFamilyPolicy: PreferDualStack
   ipFamilies:
     - IPv4
