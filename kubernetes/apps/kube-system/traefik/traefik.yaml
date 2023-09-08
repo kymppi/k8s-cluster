@@ -62,6 +62,7 @@ spec:
               cpu: 100m
               memory: 50Mi
 
+          hostNetwork: true
           ports:
             - name: web
               containerPort: 8000
@@ -74,6 +75,15 @@ spec:
             - name: traefik
               containerPort: 9000
               protocol: TCP
+
+          securityContext:
+            capabilities:
+              drop: [ALL]
+              add: [NET_BIND_SERVICE]
+            readOnlyRootFilesystem: true
+            runAsGroup: 0
+            runAsNonRoot: false
+            runAsUser: 0
 
           volumeMounts:
             - mountPath: /data
