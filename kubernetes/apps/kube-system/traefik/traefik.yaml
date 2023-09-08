@@ -33,6 +33,7 @@ spec:
             - '--ping=true'
             - '--providers.kubernetescrd'
             - '--providers.kubernetescrd.allowCrossNamespace=true'
+            - '--api.insecure=true'
           readinessProbe:
             httpGet:
               path: /ping
