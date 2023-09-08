@@ -12,6 +12,9 @@ spec:
     app.kubernetes.io/instance: traefik
     app.kubernetes.io/name: traefik
   type: LoadBalancer
+  ipFamilies:
+    - IPv4
+    - IPv6
   externalTrafficPolicy: Local
   ports:
     - port: 80
