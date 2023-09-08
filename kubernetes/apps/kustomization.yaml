@@ -4,5 +4,4 @@ kind: Kustomization
 resources:
   - ./default
   - ./storage
-  - ./kube-system
   - ./analytics
