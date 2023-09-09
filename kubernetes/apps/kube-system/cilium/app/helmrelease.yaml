@@ -111,7 +111,7 @@ spec:
     kubeProxyReplacement: true # strict is deprecated
     ipv4NativeRoutingCIDR: 10.42.0.0/24
     ipv6NativeRoutingCIDR: fd00::/64
-    kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
+    # kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
     l2announcements:
       enabled: true
       leaseDuration: 120s
