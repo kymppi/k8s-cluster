@@ -109,6 +109,8 @@ spec:
     k8sServiceHost: api.k8s.midka.dev
     k8sServicePort: 6443
     kubeProxyReplacement: strict
+    ipv4NativeRoutingCIDR: 10.42.0.0/24
+    ipv6NativeRoutingCIDR: fd42::/64
     # kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
     # l2announcements:
     #   enabled: false
