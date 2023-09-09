@@ -123,6 +123,7 @@ spec:
     localRedirectPolicy: true
     operator:
       rollOutPods: true
+      replicas: 1
     rollOutCiliumPods: true
     securityContext:
       privileged: true
