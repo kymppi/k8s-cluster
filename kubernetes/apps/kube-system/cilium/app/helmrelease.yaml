@@ -89,11 +89,11 @@ spec:
     # ipv6:
     #   enabled: true
 
-    autoDirectNodeRoutes: true
-    bgp:
-      enabled: false
-    bpf:
-      masquerade: true
+    # autoDirectNodeRoutes: true
+    # bgp:
+    #   enabled: false
+    # bpf:
+    #   masquerade: true
     cluster:
       id: 1
       name: midka
@@ -109,19 +109,19 @@ spec:
     k8sServiceHost: api.k8s.midka.dev
     k8sServicePort: 6443
     kubeProxyReplacement: strict
-    kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
-    l2announcements:
-      enabled: false
-      leaseDuration: 120s
-      leaseRenewDeadline: 60s
-      leaseRetryPeriod: 1s
-    loadBalancer:
-      algorithm: maglev
-      mode: dsr
+    # kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
+    # l2announcements:
+    #   enabled: false
+    #   leaseDuration: 120s
+    #   leaseRenewDeadline: 60s
+    #   leaseRetryPeriod: 1s
+    # loadBalancer:
+    #   algorithm: maglev
+    #   mode: dsr
     localRedirectPolicy: true
     operator:
       rollOutPods: true
     rollOutCiliumPods: true
     securityContext:
       privileged: true
-    tunnel: disabled
+    # tunnel: disabled
