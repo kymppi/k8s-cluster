@@ -32,6 +32,7 @@ spec:
           s3Url: https://s3.midka.dev
           publicUrl: https://s3.midka.dev
       resticTimeout: 6h
+      features: EnableCSI
     initContainers:
       - name: velero-plugin-for-aws
         image: velero/velero-plugin-for-aws:v1.5.0
