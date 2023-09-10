@@ -1,44 +1,15 @@
-# apiVersion: kustomize.config.k8s.io/v1beta1
-# kind: Kustomization
-# resources:
-#   - ./external-secrets.yaml
-#   - ./volume.yaml
-#   - ./deployment.yaml
-#   - ./service.yaml
-#   - ./ingress.yaml
-#   - ./config.yaml
-# metadata:
-#   namespace: analytics
-#   name: plausible
-# configMapGenerator:
-#   - name: clickhouse-config
-#     namespace: analytics
-#     files:
-#       - clickhouse-config.xml
-#   - name: clickhouse-user-config
-#     namespace: analytics
-#     files:
-#       - clickhouse-user-config.xml
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
+apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+resources:
+  - ./external-secrets.yaml
+  - ./volume.yaml
+  - ./deployment.yaml
+  - ./service.yaml
+  - ./ingress.yaml
+  - ./config.yaml
 metadata:
-  name: plausible
   namespace: analytics
-spec:
-  interval: 30m
-  path: ./kubernetes/apps/analytics/plausible
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: cluster
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-age
-  dependsOn:
-    - name: cluster-apps-external-secrets
-      namespace: kube-system
+  name: plausible
 configMapGenerator:
   - name: clickhouse-config
     namespace: analytics
