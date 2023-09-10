@@ -41,3 +41,4 @@ spec:
       concurrentAutomaticEngineUpgradePerNodeLimit: 1
       defaultLonghornStaticStorageClass: longhorn
       nodeDownPodDeletionPolicy: delete-both-statefulset-and-deployment-pod
+      replicaDiskSoftAntiAffinity: true
