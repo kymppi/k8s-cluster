@@ -32,6 +32,15 @@ spec:
             - '--providers.kubernetescrd'
             - '--providers.kubernetescrd.allowCrossNamespace=true'
             - '--api.insecure=true'
+          additionalArguments:
+            - '--certificatesresolvers.le.acme.email=ssl@midka.dev'
+            - '--certificatesresolvers.le.acme.storage=/data/acme.json'
+            - '--certificatesresolvers.le.acme.httpchallenge=true'
+            - '--certificatesresolvers.le.acme.httpchallenge.entrypoint=web'
+            - '--certificatesresolvers.le-staging.acme.email=ssl@midka.dev'
+            - '--certificatesresolvers.le-staging.acme.storage=/data/acme-staging.json'
+            - '--certificatesresolvers.le-staging.acme.tlschallenge=true'
+            - '--certificatesresolvers.le-staging.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory'
           readinessProbe:
             httpGet:
               path: /ping
