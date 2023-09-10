@@ -20,7 +20,6 @@ spec:
   dependsOn:
     - name: external-snapshotter
       namespace: flux-system
-      kind: GitRepository
   prune: true
   sourceRef:
     kind: GitRepository
