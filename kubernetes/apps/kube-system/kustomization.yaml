@@ -6,4 +6,4 @@ resources:
   - ./cilium/ks.yaml
   - ./external-secrets/ks.yaml
   - ./velero/ks.yaml
-  - ./traefik
+  - ./traefik/ks.yaml
