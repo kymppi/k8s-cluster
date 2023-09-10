@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: storage
 resources:
   - ./release.yaml
+  - ./snapshotclass.yaml
 labels:
   - pairs:
       app.kubernetes.io/name: longhorn
