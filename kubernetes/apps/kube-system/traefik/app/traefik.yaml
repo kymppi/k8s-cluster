@@ -33,7 +33,6 @@ spec:
             - '--providers.kubernetescrd'
             - '--providers.kubernetescrd.allowCrossNamespace=true'
             - '--api.insecure=true'
-          additionalArguments:
             - '--certificatesresolvers.le.acme.email=ssl@midka.dev'
             - '--certificatesresolvers.le.acme.storage=/data/acme.json'
             - '--certificatesresolvers.le.acme.httpchallenge=true'
