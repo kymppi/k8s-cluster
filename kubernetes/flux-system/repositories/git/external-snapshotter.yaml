@@ -24,5 +24,5 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: external-snapshotter-repo # Referring to the GitRepository resource
+    name: external-snapshotter # Referring to the GitRepository resource
   path: deploy/kubernetes/snapshot-controller/crds
