@@ -27,8 +27,8 @@ spec:
     keepHistory: false
   values:
     monitoring:
-      enabled: true
-      createPrometheusRules: true
+      enabled: false
+      createPrometheusRules: false
     defaultSettings:
       defaultReplicaCount: 1
       createDefaultDiskLabeledNodes: true
