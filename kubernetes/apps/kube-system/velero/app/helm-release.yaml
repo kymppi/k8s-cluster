@@ -23,16 +23,15 @@ spec:
     configuration:
       extraEnvVars:
         TZ: 'Etc/UTC'
-      provider: aws
       backupStorageLocation:
-        name: default
-        provider: minio
-        bucket: kube
-        config:
-          region: us-east-1
-          s3ForcePathStyle: true
-          s3Url: https://s3.midka.dev
-          publicUrl: https://s3.midka.dev
+        - name: default
+          provider: aws
+          bucket: kube
+          config:
+            region: us-east-1
+            s3ForcePathStyle: true
+            s3Url: https://s3.midka.dev
+            publicUrl: https://s3.midka.dev
       resticTimeout: 6h
       # features: EnableCSI
       defaultVolumesToFsBackup: true # https://www.roksblog.de/kubernetes-backup-with-velero/
