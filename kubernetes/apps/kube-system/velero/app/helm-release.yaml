@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://vmware-tanzu.github.io/helm-charts
       chart: velero
-      version: 3.1.1
+      version: 5.0.2
       sourceRef:
         kind: HelmRepository
         name: vmware-tanzu-charts
@@ -19,6 +19,7 @@ spec:
   values:
     image:
       repository: velero/velero
+      tag: v1.11.1
     configuration:
       extraEnvVars:
         TZ: 'Etc/UTC'
