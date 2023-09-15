@@ -29,8 +29,10 @@ spec:
           volumeMounts:
             - name: php-config
               mountPath: /config/php
+              readOnly: false # required for xbackbone to function
             - name: config
               mountPath: /config/www/xbackbone
+              readOnly: false # required for xbackbone to function
             - name: secrets
               mountPath: /etc/secrets/s3-credentials
             - name: data
