@@ -16,10 +16,6 @@ spec:
       containers:
         - name: xbackbone
           image: lscr.io/linuxserver/xbackbone:latest
-          # securityContext:
-          #   runAsUser: 911 # Change this to the UID of the user 'abc'
-          #   runAsGroup: 0 # Change this to the GID of the group 'abc'
-          #   fsGroup: 911 # Change this to the GID of the group 'abc'
           env:
             - name: PUID
               value: '911' # LSIO default
@@ -38,7 +34,8 @@ spec:
             - name: secrets
               mountPath: /etc/secrets/s3-credentials
             - name: data
-              mountPath: '/app/www/public/resources/'
+              mountPath: '/app/www/public/resources/database'
+
       initContainers: # need to do this because if I use the configMap directly, it will be mounted as read-only
         - name: copy-configs
           image: busybox
