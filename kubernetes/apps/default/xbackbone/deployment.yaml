@@ -29,16 +29,36 @@ spec:
           volumeMounts:
             - name: php-config
               mountPath: /config/php
-              readOnly: false # required for xbackbone to function
             - name: config
               mountPath: /config/www/xbackbone
-              readOnly: false # required for xbackbone to function
             - name: secrets
               mountPath: /etc/secrets/s3-credentials
             - name: data
               mountPath: '/app/www/public/resources/'
+      initContainers: # need to do this because if I use the configMap directly, it will be mounted as read-only
+        - name: copy-configs
+          image: busybox
+          command:
+            [
+              'sh',
+              '-c',
+              'rm -rf /php/* /config/* && cp /pre-php/* /php/ && cp /pre-config/* /config/',
+            ]
+          volumeMounts:
+            - name: pre-php-config
+              mountPath: /pre-php
+            - name: pre-config
+              mountPath: /pre-config
+            - name: php-config
+              mountPath: /php
+            - name: config
+              mountPath: /config
       volumes:
         - name: php-config
+          emptyDir: {}
+        - name: config
+          emtpryDir: {}
+        - name: pre-php-config
           configMap:
             name: xbackbone-php
             items:
@@ -46,7 +66,7 @@ spec:
                 path: php-local.ini
               - key: www2.conf
                 path: www2.conf
-        - name: config
+        - name: pre-config
           configMap:
             name: xbackbone-config
             items:
