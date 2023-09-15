@@ -54,6 +54,12 @@ spec:
               mountPath: /php
             - name: config
               mountPath: /config
+        - name: chown-database-folder
+          image: busybox
+          command: ['sh', '-c', 'chown -R 911:911 /db']
+          volumeMounts:
+            - name: data
+              mountPath: /db
       volumes:
         - name: php-config
           emptyDir: {}
