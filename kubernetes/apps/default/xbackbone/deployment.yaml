@@ -16,11 +16,15 @@ spec:
       containers:
         - name: xbackbone
           image: lscr.io/linuxserver/xbackbone:latest
-          securityContext:
-            runAsUser: 911 # Change this to the UID of the user 'abc'
-            runAsGroup: 1001 # Change this to the GID of the group 'abc'
-            fsGroup: 1001 # Change this to the GID of the group 'abc'
+          # securityContext:
+          #   runAsUser: 911 # Change this to the UID of the user 'abc'
+          #   runAsGroup: 1001 # Change this to the GID of the group 'abc'
+          #   fsGroup: 1001 # Change this to the GID of the group 'abc'
           env:
+            - name: PUID
+              value: '0'
+            - name: PGID
+              value: '0'
             - name: TZ
               value: 'Etc/UTC'
           ports:
