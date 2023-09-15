@@ -8,6 +8,11 @@ data:
   php-local.ini: |
     upload_max_filesize = 25M
     post_max_size = 25M
+  www2.conf: |
+    ; Edit this file to override www.conf and php-fpm.conf directives and restart the container
+
+    ; Pool name
+    [www]
 ---
 apiVersion: v1
 kind: ConfigMap

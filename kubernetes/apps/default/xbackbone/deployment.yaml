@@ -42,6 +42,8 @@ spec:
             items:
               - key: php-local.ini
                 path: php-local.ini
+              - key: www2.conf
+                path: www2.conf
         - name: config
           configMap:
             name: xbackbone-config
