@@ -64,7 +64,7 @@ spec:
                 path: endpoint
         - name: data
           persistentVolumeClaim:
-            claimName: xbackbone
+            claimName: xbackbone-data
 ---
 apiVersion: v1
 kind: Service
