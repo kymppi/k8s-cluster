@@ -13,8 +13,6 @@ data:
 
     ; Pool name
     [www]
-    user = root
-    group = root
 ---
 apiVersion: v1
 kind: ConfigMap
