@@ -60,7 +60,7 @@ spec:
             ['sh', '-c', 'chown -R 911:911 /app/www/public/resources/database']
           volumeMounts:
             - name: data
-              mountPath: /db
+              mountPath: /app/www/public/resources/database
       volumes:
         - name: php-config
           emptyDir: {}
