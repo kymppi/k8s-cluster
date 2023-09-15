@@ -1,0 +1,100 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xbackbone
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: xbackbone
+  template:
+    metadata:
+      labels:
+        app: xbackbone
+    spec:
+      containers:
+        - name: xbackbone
+          image: lscr.io/linuxserver/xbackbone:latest
+          env:
+            - name: PUID
+              value: '1000'
+            - name: PGID
+              value: '1000'
+            - name: TZ
+              value: 'Etc/UTC'
+          ports:
+            - containerPort: 80
+            - containerPort: 443
+          volumeMounts:
+            - name: php-config
+              mountPath: /config/php
+            - name: config
+              mountPath: /config/www/xbackbone
+            - name: secrets
+              mountPath: /etc/secrets/s3-credentials
+            - name: data
+              mountPath: '/app/www/public/resources/'
+      volumes:
+        - name: php-config
+          configMap:
+            name: xbackbone-php
+            items:
+              - key: php-local.ini
+                path: php-local.ini
+        - name: config
+          configMap:
+            name: xbackbone-config
+            items:
+              - key: config.php
+                path: config.php
+        - name: secrets
+          secret:
+            secretName: xbackbone-external-secret
+            items:
+              - key: S3_ACCESS_KEY
+                path: key
+              - key: S3_SECRET_KEY
+                path: secret_key
+              - key: S3_REGION
+                path: region
+              - key: S3_BUCKET
+                path: bucket
+              - key: S3_ENDPOINT
+                path: endpoint
+        - name: data
+          persistentVolumeClaim:
+            claimName: xbackbone
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: xbackbone
+  namespace: default
+spec:
+  selector:
+    app: xbackbone
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      name: http
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: xbackbone
+  namespace: default
+spec:
+  entryPoints:
+    - websecure
+    - web
+  routes:
+    - match: Host(`i.i11l.blog`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: xbackbone
+          port: 80
+          kind: Service
+  tls:
+    certResolver: le

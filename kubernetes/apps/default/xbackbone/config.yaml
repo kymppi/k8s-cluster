@@ -1,0 +1,39 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: xbackbone-php
+  namespace: default
+data:
+  php-local.ini: |
+    upload_max_filesize = 25M
+    post_max_size = 25M
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: xbackbone-config
+  namespace: default
+data:
+  config.php: |
+    <?php
+    return array (
+      'base_url' => 'https://i.i11l.blog',
+      'db' =>
+      array (
+        'connection' => 'sqlite',
+        'dsn' => '/app/www/public/resources/database/xbackbone.db',
+        'username' => NULL,
+        'password' => NULL,
+      ),
+      'storage' => array (
+        'driver' => 's3',
+        'key' => base64_decode(file_get_contents('/etc/secrets/s3-credentials/key')),
+        'secret' => base64_decode(file_get_contents('/etc/secrets/s3-credentials/secret')),
+        'region' => base64_decode(file_get_contents('/etc/secrets/s3-credentials/region')),
+        'bucket' => base64_decode(file_get_contents('/etc/secrets/s3-credentials/bucket')),
+        'endpoint' => base64_decode(file_get_contents('/etc/secrets/s3-credentials/endpoint')),
+        'use_path_style_endpoint' => true,
+        'path' => '',
+      ),
+    );
