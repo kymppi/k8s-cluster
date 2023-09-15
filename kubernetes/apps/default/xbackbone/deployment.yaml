@@ -34,7 +34,7 @@ spec:
             - name: secrets
               mountPath: /etc/secrets/s3-credentials
             - name: data
-              mountPath: '/app/www/public/resources/database'
+              mountPath: '/db'
 
       initContainers: # need to do this because if I use the configMap directly, it will be mounted as read-only
         - name: copy-configs
