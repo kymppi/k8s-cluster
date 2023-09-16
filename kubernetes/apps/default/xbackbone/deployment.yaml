@@ -27,14 +27,14 @@ spec:
             - containerPort: 80
             - containerPort: 443
           volumeMounts:
-            - name: php-config
-              mountPath: /config/php
-            - name: config
-              mountPath: /config/www/xbackbone
+            # - name: php-config
+            #   mountPath: /config/php
+            # - name: config
+            #   mountPath: /config/www/xbackbone
             - name: secrets
               mountPath: /etc/secrets/s3-credentials
             - name: data
-              mountPath: '/config/www/xbackbone/resources'
+              mountPath: '/config'
 
       initContainers: # need to do this because if I use the configMap directly, it will be mounted as read-only
         - name: copy-configs
@@ -43,16 +43,14 @@ spec:
             [
               'sh',
               '-c',
-              'rm -rf /php/* /config/config.php && cp /pre-php/* /php/ && cp /pre-config/* /config/',
+              'rm rf /config/php/* /config/www/xbackbone/config.php && cp /pre-php/* /config/php/ && cp /pre-config/* /config/www/xbackbone/',
             ]
           volumeMounts:
             - name: pre-php-config
               mountPath: /pre-php
             - name: pre-config
               mountPath: /pre-config
-            - name: php-config
-              mountPath: /php
-            - name: config
+            - name: data
               mountPath: /config
         - name: chown-database-folder
           image: busybox
