@@ -43,7 +43,7 @@ spec:
             [
               'sh',
               '-c',
-              'rm -rf /config/php/* /config/www/xbackbone/config.php && cp /pre-php/* /config/php/ && cp /pre-config/* /config/www/xbackbone/',
+              'rm -rf /config/php/* /config/www/xbackbone/config.php && mkdir -p /config/php /config/www/xbackbone && cp /pre-php/* /config/php/ && cp /pre-config/* /config/www/xbackbone/',
             ]
           volumeMounts:
             - name: pre-php-config
