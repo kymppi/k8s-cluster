@@ -34,7 +34,7 @@ spec:
             - name: secrets
               mountPath: /etc/secrets/s3-credentials
             - name: data
-              mountPath: '/data'
+              mountPath: '/config/www/xbackbone/resources'
 
       initContainers: # need to do this because if I use the configMap directly, it will be mounted as read-only
         - name: copy-configs
@@ -56,10 +56,11 @@ spec:
               mountPath: /config
         - name: chown-database-folder
           image: busybox
-          command: ['sh', '-c', 'chown -R 911:911 /data']
+          command:
+            ['sh', '-c', 'chown -R 911:911 /config/www/xbackbone/resources']
           volumeMounts:
             - name: data
-              mountPath: /data
+              mountPath: /config/www/xbackbone/resources
       volumes:
         - name: php-config
           emptyDir: {}
