@@ -33,12 +33,12 @@ data:
       ),
       'storage' => array (
         'driver' => 's3',
-        'key' => base64_decode(file_get_contents('/etc/secrets/s3-credentials/key')),
-        'secret' => base64_decode(file_get_contents('/etc/secrets/s3-credentials/secret')),
-        'region' => base64_decode(file_get_contents('/etc/secrets/s3-credentials/region')),
-        'bucket' => base64_decode(file_get_contents('/etc/secrets/s3-credentials/bucket')),
-        'endpoint' => base64_decode(file_get_contents('/etc/secrets/s3-credentials/endpoint')),
+        'key' => file_get_contents('/etc/secrets/s3-credentials/key'),
+        'secret' => file_get_contents('/etc/secrets/s3-credentials/secret'),
+        'region' => file_get_contents('/etc/secrets/s3-credentials/region'),
+        'bucket' => file_get_contents('/etc/secrets/s3-credentials/bucket'),
+        'endpoint' => file_get_contents('/etc/secrets/s3-credentials/endpoint'),
         'use_path_style_endpoint' => true,
-        'path' => '',
+        'path' => '/',
       ),
     );
