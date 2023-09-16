@@ -43,7 +43,7 @@ spec:
             [
               'sh',
               '-c',
-              'rm -rf /php/* /config/* && cp /pre-php/* /php/ && cp /pre-config/* /config/',
+              'rm -rf /php/* /config/config.php && cp /pre-php/* /php/ && cp /pre-config/* /config/',
             ]
           volumeMounts:
             - name: pre-php-config
@@ -56,8 +56,7 @@ spec:
               mountPath: /config
         - name: chown-database-folder
           image: busybox
-          command:
-            ['sh', '-c', 'chown -R 911:911 /config/www/xbackbone/resources']
+          command: ['sh', '-c', 'chown -R 911:911 /config']
           volumeMounts:
             - name: data
               mountPath: /config/www/xbackbone/resources

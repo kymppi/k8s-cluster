@@ -27,7 +27,7 @@ data:
       'db' =>
       array (
         'connection' => 'sqlite',
-        'dsn' => '/config/www/xbackbone/resources/database/xbackbone.db',
+        'dsn' => '/app/www/public/resources/database/xbackbone.sqlite',
         'username' => NULL,
         'password' => NULL,
       ),
