@@ -8,3 +8,4 @@ resources:
   - ./vmware-tanzu.yaml
   - ./cilium.yaml
   - ./traefik.yaml
+  - ./grafana.yaml
