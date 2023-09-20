@@ -57,7 +57,7 @@ spec:
         memory: 127M
 
     serviceMonitor:
-      enabled: true
+      enabled: false
 
     datasources:
       enabled: true
