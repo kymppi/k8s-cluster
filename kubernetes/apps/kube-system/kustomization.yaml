@@ -7,3 +7,4 @@ resources:
   - ./external-secrets/ks.yaml
   - ./velero/ks.yaml
   - ./traefik/ks.yaml
+  - ./cert-manager/ks.yaml
