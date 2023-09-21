@@ -9,3 +9,4 @@ resources:
   - ./cilium.yaml
   - ./traefik.yaml
   - ./grafana.yaml
+  - ./jetstack.yaml
