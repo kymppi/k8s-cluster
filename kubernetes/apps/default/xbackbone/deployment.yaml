@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: xbackbone
-          image: lscr.io/linuxserver/xbackbone:latest
+          image: lscr.io/linuxserver/xbackbone:1.22.1-r0-ls225
           env:
             - name: PUID
               value: '911' # LSIO default
