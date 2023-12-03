@@ -48,8 +48,7 @@ spec:
               mountPath: /processed
               readOnly: true
             - name: realconfig
-              mountPath: /app/settings.toml
-              subPath: settings.toml
+              mountPath: /app/
       containers:
         - name: adventofcode
           image: ghcr.io/kymppi/aocleaderboard:latest
