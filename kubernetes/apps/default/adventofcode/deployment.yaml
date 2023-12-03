@@ -51,11 +51,11 @@ spec:
               mountPath: /app/
       containers:
         - name: adventofcode
-          image: ghcr.io/kymppi/aocleaderboard:latest
+          image: ghcr.io/kymppi/aocleaderboard:v1.0.3
           imagePullPolicy: Always
           volumeMounts:
             - name: appconfig
-              mountPath: /app/
+              mountPath: /config/
           ports:
             - containerPort: 8000
           resources:
