@@ -47,17 +47,15 @@ spec:
             - name: processed
               mountPath: /processed
               readOnly: true
-            - name: realconfig
+            - name: appconfig
               mountPath: /app/
       containers:
         - name: adventofcode
           image: ghcr.io/kymppi/aocleaderboard:latest
           imagePullPolicy: Always
           volumeMounts:
-            - name: realconfig
-              mountPath: /app/settings.toml
-              subPath: settings.toml
-              readOnly: true
+            - name: appconfig
+              mountPath: /app/
           ports:
             - containerPort: 8000
           resources:
@@ -73,7 +71,7 @@ spec:
             name: adventofcodeconfig
         - name: processed
           emptyDir: {}
-        - name: realconfig
+        - name: appconfig
           emtpyDir: {}
 ---
 apiVersion: v1
