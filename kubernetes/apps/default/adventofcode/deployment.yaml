@@ -36,7 +36,7 @@ spec:
             - name: SESSION_COOKIE
               valueFrom:
                 secretKeyRef:
-                  name: adventofcode
+                  name: adventofcode-secret
                   key: session_cookie
         - name: copy
           image: busybox

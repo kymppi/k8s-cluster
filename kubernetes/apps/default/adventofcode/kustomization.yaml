@@ -7,3 +7,4 @@ metadata:
 resources:
   - config.yaml
   - deployment.yaml
+  - external-secrets.yaml
