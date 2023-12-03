@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ConfigMap
+data:
+  settings.toml: |
+    # Leaderboard name
+    leaderboard_name = "ProCoderHangout"
+
+    # IDs of all Advent of Code leaderboards to be merged
+    leaderboard_ids = [1259558]
+
+    # Default leaderboard order: "local_score" (default) or "stars"
+    # leaderboard_default_order = "stars"
+
+    # Session cookie for adventofcode.com (with access to all leaderboards)
+    session_cookie = "session=${SESSION_COOKIE}"
+
+    # How often to fetch leaderboards from adventofcode.com, in seconds
+    # (default: 900)
+    # leaderboard_update_sec = 1200
+
+    # List of member IDs to exclude from leaderboard
+    # exclude_members = [12345, 23456]
+
+    # Override the latest event year, which by default is the current year or the
+    # previous year if current date is before Dec 1st (when first puzzle unlocks)
+    # latest_event_year = 2020
+metadata:
+  name: adventofcodeconfig
+  namespace: default

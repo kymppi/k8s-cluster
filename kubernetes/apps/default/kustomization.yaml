@@ -6,3 +6,4 @@ resources:
   #- ./whoami
   - ./writefreely
   - ./xbackbone
+  - ./adventofcode

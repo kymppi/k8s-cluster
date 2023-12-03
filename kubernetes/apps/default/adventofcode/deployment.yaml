@@ -1,0 +1,109 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adventofcode
+  namespace: default
+  labels:
+    app: adventofcode
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: adventofcode
+  template:
+    metadata:
+      labels:
+        app: adventofcode
+    spec:
+      securityContext:
+        runAsUser: 2
+        runAsGroup: 2
+        fsGroup: 2
+      imagePullSecrets:
+        - name: ghcr-io-registry
+      initContainers:
+        - name: envsubst
+          image: 'dibi/envsubst'
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: config
+              mountPath: /workdir/settings.toml
+              subPath: settings.toml
+              readOnly: true
+            - name: processed
+              mountPath: /processed
+          env:
+            - name: SESSION_COOKIE
+              valueFrom:
+                secretKeyRef:
+                  name: adventofcode
+                  key: session_cookie
+        - name: copy
+          image: busybox
+          imagePullPolicy: IfNotPresent
+          command:
+            ['sh', '-c', 'cp /processed/settings.toml /app/settings.toml']
+          volumeMounts:
+            - name: processed
+              mountPath: /processed
+              readOnly: true
+            - name: realconfig
+              mountPath: /app
+      containers:
+        - name: adventofcode
+          image: ghcr.io/kymppi/aocleaderboard:latest
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: realconfig
+              mountPath: /app/settings.toml
+              subPath: settings.toml
+              readOnly: true
+          ports:
+            - containerPort: 8000
+          resources:
+            requests:
+              cpu: 100m
+              memory: 20Mi
+            limits:
+              cpu: 200m
+              memory: 200Mi
+      volumes:
+        - name: config
+          configMap:
+            name: adventofcodeconfig
+        - name: processed
+          emptyDir: {}
+        - name: realconfig
+          emtpyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: adventofcode
+spec:
+  type: ClusterIP
+  selector:
+    app: adventofcode
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: adventofcode
+  namespace: default
+spec:
+  entryPoints:
+    - websecure
+    - web
+  routes:
+    - match: Host(`advent.procoderhangout.org`)
+      kind: Rule
+      services:
+        - name: adventofcode
+          port: 80
+          kind: Service
+  tls:
+    certResolver: le
