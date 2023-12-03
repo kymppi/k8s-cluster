@@ -51,7 +51,7 @@ spec:
               mountPath: /app/
       containers:
         - name: adventofcode
-          image: ghcr.io/kymppi/aocleaderboard:v1.0.3
+          image: ghcr.io/kymppi/aocleaderboard:fc5d29db51eb7d92ded7de548a0a0efecc3d4fe2 # v1.0.3
           imagePullPolicy: Always
           volumeMounts:
             - name: appconfig
