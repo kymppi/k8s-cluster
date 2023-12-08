@@ -5,6 +5,6 @@ metadata:
   name: grafana-db
   namespace: monitoring
 spec:
-  instances: 2
+  instances: 1
   storage:
     size: 100Mi
