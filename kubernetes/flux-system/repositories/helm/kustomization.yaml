@@ -10,3 +10,4 @@ resources:
   - ./traefik.yaml
   - ./grafana.yaml
   - ./jetstack.yaml
+  - ./cloudnative-pg.yaml
