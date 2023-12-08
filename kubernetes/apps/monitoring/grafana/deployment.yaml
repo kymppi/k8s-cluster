@@ -102,7 +102,7 @@ spec:
           - 0
       containers:
         - name: grafana
-          image: grafana/grafana:latest
+          image: grafana/grafana-oss:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
@@ -134,7 +134,7 @@ spec:
             - mountPath: /var/lib/grafana
               name: grafana-pv
             - name: grafana-config
-              mountPath: /etc/grafana/config.ini
+              mountPath: /etc/grafana/grafana.ini
               subPath: config.ini
               readOnly: true
             - name: db-credentials
