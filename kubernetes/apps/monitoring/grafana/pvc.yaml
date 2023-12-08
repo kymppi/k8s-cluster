@@ -4,10 +4,10 @@ kind: PersistentVolumeClaim
 metadata:
   name: grafana-data
   namespace: monitoring
-spec:
+spec: # for dashboards
   accessModes:
     - ReadWriteOnce
   storageClassName: longhorn
   resources:
     requests:
-      storage: 2Gi
+      storage: 500Mi
