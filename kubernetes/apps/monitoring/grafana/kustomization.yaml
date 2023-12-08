@@ -5,4 +5,4 @@ resources:
   - ./deployment.yaml
   - ./pvc.yaml
   - ./config.yaml
-  #- ./db.yaml
+  - ./db.yaml

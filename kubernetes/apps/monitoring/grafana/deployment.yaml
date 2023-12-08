@@ -149,6 +149,5 @@ spec:
           configMap:
             name: grafana-config
         - name: db-credentials
-          # secret:
-          #   secretName: grafana-db-app
-          emptyDir: {}
+          secret:
+            secretName: grafana-db-app
