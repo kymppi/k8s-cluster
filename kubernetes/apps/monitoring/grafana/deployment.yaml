@@ -133,7 +133,21 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/grafana
               name: grafana-pv
+            - name: grafana-config
+              mountPath: /etc/grafana/config.ini
+              subPath: config.ini
+              readOnly: true
+            - name: db-credentials
+              mountPath: /etc/secrets
+              readOnly: true
+
       volumes:
         - name: grafana-pv
           persistentVolumeClaim:
             claimName: grafana-data
+        - name: grafana-config
+          configMap:
+            name: grafana-config
+        - name: db-credentials
+          secret:
+            secretName: grafana-db-app

@@ -4,5 +4,5 @@ kind: Kustomization
 resources:
   - ./deployment.yaml
   - ./pvc.yaml
-  #- ./config.yaml
+  - ./config.yaml
   - ./db.yaml
