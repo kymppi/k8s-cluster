@@ -129,7 +129,7 @@ spec:
           resources:
             requests:
               cpu: 250m
-              memory: 750Mi
+              memory: 219Mi
           volumeMounts:
             - mountPath: /var/lib/grafana
               name: grafana-pv
