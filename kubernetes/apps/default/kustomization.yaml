@@ -7,3 +7,4 @@ resources:
   - ./writefreely
   - ./xbackbone
   - ./adventofcode
+  - ./test-cluster.yaml
