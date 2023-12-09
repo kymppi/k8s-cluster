@@ -6,7 +6,6 @@ data:
 
     [server]
     root_url = https://grafana.midka.dev/
-    enforce_domain = true
 
     [security]
     cookie_secure = true
