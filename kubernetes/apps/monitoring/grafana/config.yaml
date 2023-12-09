@@ -2,12 +2,24 @@ apiVersion: v1
 kind: ConfigMap
 data:
   config.ini: |
+    instance_name = grafana.midka.dev
+
+    [server]
+    root_url = https://grafana.midka.dev/
+    enforce_domain = true
+
+    [security]
+    cookie_secure = true
+
     [database]
     type = postgres
     host = $__file{/etc/secrets/host}
     name = $__file{/etc/secrets/dbname}
     user = $__file{/etc/secrets/user}
     password = $__file{/etc/secrets/password}
+
+    [users]
+    default_theme = system
 metadata:
   name: grafana-config
   namespace: monitoring
