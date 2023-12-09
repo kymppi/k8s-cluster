@@ -168,22 +168,22 @@ spec:
   selector:
     app: grafana
   type: ClusterIP
-# ---
-# apiVersion: traefik.containo.us/v1alpha1
-# kind: IngressRoute
-# metadata:
-#   name: grafana
-#   namespace: monitoring
-# spec:
-#   entryPoints:
-#     - web
-#     - websecure
-#   routes:
-#     - kind: Rule
-#       match: Host(`grafana.midka.dev`)
-#       services:
-#         - name: grafana
-#           port: 80
-#           kind: Service
-#   tls:
-#     certResolver: le
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`grafana.midka.dev`)
+      services:
+        - name: grafana
+          port: 80
+          kind: Service
+  tls:
+    certResolver: le
