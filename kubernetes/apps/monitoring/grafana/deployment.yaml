@@ -140,6 +140,12 @@ spec:
             - name: db-credentials
               mountPath: /etc/secrets
               readOnly: true
+          env:
+            - name: GF_SECURITY_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: grafana
+                  key: secret_key
 
       volumes:
         - name: grafana-pv

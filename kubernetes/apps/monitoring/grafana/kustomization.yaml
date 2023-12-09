@@ -6,3 +6,4 @@ resources:
   - ./pvc.yaml
   - ./config.yaml
   - ./db.yaml
+  - ./external-secrets.yaml
