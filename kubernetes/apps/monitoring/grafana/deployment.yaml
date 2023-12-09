@@ -151,3 +151,39 @@ spec:
         - name: db-credentials
           secret:
             secretName: grafana-db-app
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: grafana
+  name: grafana
+  namespace: monitoring
+spec:
+  ports:
+    - name: http-grafana
+      port: 80
+      protocol: TCP
+      targetPort: 3000
+  selector:
+    app: grafana
+  type: ClusterIP
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`grafana.midka.dev`)
+      services:
+        - name: grafana
+          port: 80
+          kind: Service
+  tls:
+    certResolver: le
