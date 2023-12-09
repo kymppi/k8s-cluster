@@ -186,4 +186,4 @@ spec:
           port: 80
           kind: Service
   tls:
-    certResolver: le
+    certResolver: le-staging
