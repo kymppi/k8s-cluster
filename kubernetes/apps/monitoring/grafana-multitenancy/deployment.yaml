@@ -22,7 +22,7 @@ spec:
               cpu: '500m'
           ports:
             - containerPort: 3000
-              name: http-auth-server
+              name: auth-server
               protocol: TCP
           env:
             - name: JWT_ALLOWED_ISSUER
@@ -43,7 +43,7 @@ metadata:
   namespace: monitoring
 spec:
   ports:
-    - name: http-auth-server
+    - name: auth-server
       port: 3000
       protocol: TCP
       targetPort: 3000
