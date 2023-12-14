@@ -23,6 +23,9 @@ data:
     ruler_storage:
       s3:
         bucket_name: mimir-ruler
+
+    memberlist:
+      cluster_label: mimir
   nginx.conf: |
     user nginx;
     worker_processes auto;
@@ -68,7 +71,7 @@ data:
           auth_request_set $x_scope_orgid $upstream_http_x_scope_orgid;
 
           proxy_set_header X-Scope-Orgid $x_scope_orgid;
-          
+
           proxy_pass http://localhost:8080/;
         }
 
