@@ -15,10 +15,6 @@ spec:
       labels:
         app: mimir
     spec:
-      securityContext:
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
       containers:
         - name: nginx-auth-proxy
           image: nginx:1.25-alpine
@@ -78,6 +74,7 @@ spec:
             - mountPath: /etc/config/mimir.yaml
               name: mimir-config
               subPath: mimir.yaml
+              readOnly: true
       volumes:
         - name: mimir-config
           configMap:
