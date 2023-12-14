@@ -31,6 +31,7 @@ spec:
           image: grafana/mimir:2.10.5
           imagePullPolicy: IfNotPresent
           command:
+            - '/bin/mimir'
             - '-config.file=/etc/config/mimir.yaml'
           ports:
             - containerPort: 8080
