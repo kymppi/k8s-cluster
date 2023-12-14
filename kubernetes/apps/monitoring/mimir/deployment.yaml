@@ -98,3 +98,43 @@ spec:
                 path: nginx.conf
         - name: processed
           emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: mimir
+  name: mimir
+  namespace: monitoring
+spec:
+  ports:
+    - name: http-nginx
+      port: 80
+      protocol: TCP
+      targetPort: 80
+    - name: http-mimir
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: mimir
+  type: ClusterIP
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: grafana-mimir
+  namespace: monitoring
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`mimir.midka.dev`)
+      services:
+        - name: http-nginx
+          port: 80
+          kind: Service
+  tls:
+    certResolver: le
