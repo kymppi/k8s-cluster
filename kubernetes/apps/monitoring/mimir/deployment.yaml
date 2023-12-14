@@ -31,7 +31,7 @@ spec:
           image: grafana/mimir:2.10.5
           imagePullPolicy: IfNotPresent
           command:
-            - '-config.file=/etc/mimir.yaml'
+            - '-config.file=/etc/config/mimir.yaml'
           ports:
             - containerPort: 8080
               name: http-mimir
@@ -71,7 +71,7 @@ spec:
                   key: aws_access_key_id
                   name: grafana-mimir-secrets
           volumeMounts:
-            - mountPath: /etc/
+            - mountPath: /etc/config/mimir.yaml
               name: mimir-config
               subPath: mimir.yaml
       volumes:
