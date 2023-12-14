@@ -1,0 +1,50 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana-multitenancy
+spec:
+  selector:
+    matchLabels:
+      app: grafana-multitenancy
+  template:
+    metadata:
+      labels:
+        app: grafana-multitenancy
+    spec:
+      containers:
+        - name: auth-server
+          image: ghcr.io/kymppi/grafana-multitenant-auth:v1.0.1
+          resources:
+            limits:
+              memory: '128Mi'
+              cpu: '500m'
+          ports:
+            - containerPort: 3000
+              name: http-auth-server
+              protocol: TCP
+          env:
+            - name: JWT_ALLOWED_ISSUER
+              valueFrom:
+                secretKeyRef:
+                  key: jwt_allowed_issuer
+                  name: grafana-multitenancy-secrets
+            - name: JWT_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: jwt_secret_key
+                  name: grafana-multitenancy-secrets
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana-multitenancy
+spec:
+  ports:
+    - name: http-auth-server
+      port: 3000
+      protocol: TCP
+      targetPort: 3000
+  selector:
+    app: grafana-multitenancy
+  type: ClusterIP

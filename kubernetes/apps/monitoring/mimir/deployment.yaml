@@ -16,6 +16,17 @@ spec:
         app: mimir
     spec:
       containers:
+        - name: nginx-auth-proxy
+          image: nginx:1.25-alpine
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              name: http-nginx-auth-proxy
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /etc/nginx/nginx.conf
+              name: mimir-config
+              subPath: nginx.conf
         - name: mimir
           image: grafana/mimir:2.10.5
           imagePullPolicy: IfNotPresent
@@ -70,3 +81,5 @@ spec:
             items:
               - key: mimir.yaml
                 path: mimir.yaml
+              - key: nginx.conf
+                path: nginx.conf
