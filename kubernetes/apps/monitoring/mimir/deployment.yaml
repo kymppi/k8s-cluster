@@ -133,7 +133,7 @@ spec:
     - kind: Rule
       match: Host(`mimir.midka.dev`)
       services:
-        - name: http-nginx
+        - name: mimir
           port: 80
           kind: Service
   tls:
