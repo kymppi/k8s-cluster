@@ -64,6 +64,9 @@ spec:
             - containerPort: 8080
               name: http-mimir
               protocol: TCP
+            - containerPort: 7946
+              name: memberlist-mimir
+              protocol: TCP
           readinessProbe:
             failureThreshold: 3
             httpGet:
@@ -116,6 +119,10 @@ spec:
       port: 8080
       protocol: TCP
       targetPort: 8080
+    - name: memberlist-mimir
+      port: 7946
+      protocol: TCP
+      targetPort: 7946
   selector:
     app: mimir
   type: ClusterIP

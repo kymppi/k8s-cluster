@@ -26,6 +26,7 @@ data:
 
     memberlist:
       cluster_label: mimir
+      join_members: [dnssrv+mimir.monitoring.svc.cluster.local:7946]
   nginx.conf: |
     user nginx;
     worker_processes auto;
