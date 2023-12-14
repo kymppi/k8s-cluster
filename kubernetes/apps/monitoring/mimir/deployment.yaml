@@ -71,7 +71,7 @@ spec:
                   key: aws_access_key_id
                   name: grafana-mimir-secrets
           volumeMounts:
-            - mountPath: /etc/mimir.yaml
+            - mountPath: /etc/
               name: mimir-config
               subPath: mimir.yaml
       volumes:
