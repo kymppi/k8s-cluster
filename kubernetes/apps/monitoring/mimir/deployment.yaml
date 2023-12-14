@@ -28,15 +28,10 @@ spec:
               name: mimir-config
               subPath: nginx.conf
         - name: mimir
-          # image: grafana/mimir:2.10.5
-          image: busybox
+          image: grafana/mimir:2.10.5
           imagePullPolicy: IfNotPresent
-          # command:
-          #   - '-config.file=/etc/config/mimir.yaml'
           command:
-            - 'sh'
-            - '-c'
-            - 'while true; do sleep 6000; done'
+            - '-config.file=/etc/config/mimir.yaml'
           ports:
             - containerPort: 8080
               name: http-mimir
