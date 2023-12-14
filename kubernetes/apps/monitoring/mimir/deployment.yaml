@@ -65,7 +65,7 @@ spec:
               name: http-mimir
               protocol: TCP
             - containerPort: 7946
-              name: memberlist-mimir
+              name: memberlist
               protocol: TCP
           readinessProbe:
             failureThreshold: 3
@@ -119,7 +119,7 @@ spec:
       port: 8080
       protocol: TCP
       targetPort: 8080
-    - name: memberlist-mimir
+    - name: memberlist
       port: 7946
       protocol: TCP
       targetPort: 7946
