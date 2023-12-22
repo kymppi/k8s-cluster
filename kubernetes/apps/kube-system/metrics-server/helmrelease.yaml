@@ -1,6 +1,6 @@
 ---
 # FROM https://github.com/anthr76/infra/blob/d201a7a6d61855d30462e97c04fda7bd6b1d3278/k8s/base/kube-system/metrics-server/helm-release.yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: metrics-server
