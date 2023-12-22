@@ -6,3 +6,4 @@ resources:
   - ./grafana
   - ./mimir
   - ./grafana-multitenancy
+  - ./kube-prometheus-stack

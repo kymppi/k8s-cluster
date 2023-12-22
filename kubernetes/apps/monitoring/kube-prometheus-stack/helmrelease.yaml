@@ -1,0 +1,73 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: kube-prometheus-stack
+  namespace: monitoring
+spec:
+  interval: 5m
+  install:
+    crds: CreateReplace
+  upgrade:
+    crds: CreateReplace
+  chart:
+    spec:
+      chart: kube-prometheus-stack
+      version: 55.5.0
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community-charts
+        namespace: flux-system
+  driftDetection:
+    mode: enabled
+    ignore:
+      # Ignore "validated" annotation which is not inserted during install
+      - paths: ['/metadata/annotations/prometheus-operator-validated']
+        target:
+          kind: PrometheusRule
+  values:
+    fullnameOverride: kps
+    alertmanager:
+      enabled: false
+    prometheus:
+      prometheusSpec:
+        retention: 24h
+        replicas: 3
+        replicaExternalLabelName: __replica__
+        ruleSelectorNilUsesHelmValues: false
+        serviceMonitorSelectorNilUsesHelmValues: false
+        podMonitorSelectorNilUsesHelmValues: false
+        probeSelectorNilUsesHelmValues: false
+        scrapeConfigSelectorNilUsesHelmValues: false
+        enableAdminAPI: true
+        walCompression: true
+        enableFeatures:
+          - auto-gomaxprocs
+          - memory-snapshot-on-shutdown
+          - new-service-discovery-manager
+        remoteWrite:
+          - url: http://mimir.monitoring.svc.cluster.local:8080/api/v1/push
+            headers:
+              X-Scope-Orgd: '1'
+        externalLabels:
+          cluster: cluster
+    prometheus-node-exporter:
+      fullnameOverride: node-exporter
+      prometheus:
+        monitor:
+          enabled: true
+          relabelings:
+            - action: replace
+              regex: (.*)
+              replacement: $1
+              sourceLabels:
+                - __meta_kubernetes_pod_node_name
+              targetLabel: kubernetes_node
+            - action: replace
+              regex: (.*)
+              replacement: $1
+              sourceLabels:
+                - __meta_kubernetes_pod_node_name
+              targetLabel: instance
+    grafana:
+      enabled: false

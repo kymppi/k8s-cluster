@@ -12,3 +12,4 @@ resources:
   - ./jetstack.yaml
   - ./cloudnative-pg.yaml
   - ./metrics-server-charts.yaml
+  - ./prometheus-community-charts.yaml
