@@ -11,3 +11,4 @@ resources:
   - ./grafana.yaml
   - ./jetstack.yaml
   - ./cloudnative-pg.yaml
+  - ./metrics-server-charts.yaml

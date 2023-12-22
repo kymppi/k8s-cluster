@@ -8,3 +8,4 @@ resources:
   - ./velero/ks.yaml
   - ./traefik/ks.yaml
   - ./cert-manager/ks.yaml
+  - ./metrics-server/helmrelease.yaml
