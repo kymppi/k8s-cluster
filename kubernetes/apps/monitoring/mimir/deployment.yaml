@@ -10,6 +10,7 @@ spec:
   selector:
     matchLabels:
       app: mimir
+  replicas: 3
   template:
     metadata:
       labels:
