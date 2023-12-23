@@ -27,6 +27,11 @@ data:
     memberlist:
       cluster_label: mimir
       join_members: [dnssrv+mimir.monitoring.svc.cluster.local:7946]
+
+    limits:
+      accept_ha_samples: true
+      ha_cluster_label: cluster
+      ha_replica_label: __replica__
   nginx.conf: |
     user nginx;
     worker_processes auto;
