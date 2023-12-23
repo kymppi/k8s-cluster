@@ -87,13 +87,8 @@ spec:
               port: 8080
             timeoutSeconds: 1
           volumeMounts:
-            - mountPath: /etc/config/mimir.yaml
+            - mountPath: /etc/config/
               name: processed
-              subPath: mimir.yaml
-              readOnly: true
-            - mountPath: /etc/config/runtime.yaml
-              name: processed
-              subPath: runtime.yaml
               readOnly: true
       volumes:
         - name: mimir-config
