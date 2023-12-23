@@ -22,12 +22,7 @@ spec:
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: mimir-config
-              mountPath: /workdir/mimir.yaml
-              subPath: mimir.yaml
-              readOnly: true
-            - name: mimir-config
-              mountPath: /workdir/runtime.yaml
-              subPath: runtime.yaml
+              mountPath: /workdir/
               readOnly: true
             - name: processed
               mountPath: /processed
