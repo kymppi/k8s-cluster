@@ -32,10 +32,6 @@ data:
       accept_ha_samples: true
       ha_cluster_label: cluster
       ha_replica_label: __replica__
-
-    overrides:
-      2:
-        ingestion_rate: 50000
   nginx.conf: |
     user nginx;
     worker_processes auto;
@@ -96,6 +92,10 @@ data:
         }
       }
     }
+  runtime.yaml: |
+    overrides:
+      2:
+        ingestion_rate: 50000
 metadata:
   name: grafana-mimir-config
   namespace: monitoring

@@ -25,6 +25,10 @@ spec:
               mountPath: /workdir/mimir.yaml
               subPath: mimir.yaml
               readOnly: true
+            - name: mimir-config
+              mountPath: /workdir/runtime.yaml
+              subPath: runtime.yaml
+              readOnly: true
             - name: processed
               mountPath: /processed
           env:
@@ -61,6 +65,7 @@ spec:
           command:
             - '/bin/mimir'
             - '-config.file=/etc/config/mimir.yaml'
+            - '-runtime-config.file=/etc/config/runtime.yaml'
           ports:
             - containerPort: 8080
               name: http-mimir
@@ -90,6 +95,10 @@ spec:
             - mountPath: /etc/config/mimir.yaml
               name: processed
               subPath: mimir.yaml
+              readOnly: true
+            - mountPath: /etc/config/runtime.yaml
+              name: processed
+              subPath: runtime.yaml
               readOnly: true
       volumes:
         - name: mimir-config
