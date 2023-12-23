@@ -25,7 +25,7 @@ spec:
     prometheus:
       prometheusSpec:
         retention: 24h
-        replicas: 3
+        replicas: 2
         replicaExternalLabelName: __replica__
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
