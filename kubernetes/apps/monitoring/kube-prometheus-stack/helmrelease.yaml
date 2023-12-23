@@ -24,7 +24,7 @@ spec:
       enabled: false
     prometheus:
       prometheusSpec:
-        retention: 24h
+        retention: 6h
         replicas: 2
         replicaExternalLabelName: __replica__
         ruleSelectorNilUsesHelmValues: false
