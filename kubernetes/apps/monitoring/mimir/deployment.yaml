@@ -22,7 +22,7 @@ spec:
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: mimir-config
-              mountPath: /workdir/
+              mountPath: /workdir
               readOnly: true
             - name: processed
               mountPath: /processed
@@ -99,6 +99,8 @@ spec:
                 path: mimir.yaml
               - key: nginx.conf
                 path: nginx.conf
+              - key: runtime.yaml
+                path: runtime.yaml
         - name: processed
           emptyDir: {}
 ---
