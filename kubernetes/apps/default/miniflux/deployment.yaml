@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: miniflux
+  namespace: default
+  labels:
+    app: miniflux
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: miniflux
+  template:
+    metadata:
+      labels:
+        app: miniflux
+    spec:
+      securityContext:
+        runAsUser: 2
+        runAsGroup: 2
+        fsGroup: 2
+      imagePullSecrets:
+        - name: ghcr-io-registry
+      containers:
+        - name: miniflux
+          image: ghcr.io/miniflux/miniflux:2.0.51
+          imagePullPolicy: Always
+          env:
+            - name: RUN_MIGRATIONS
+              value: '1'
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: miniflux-cluster-app # cnpg cluster
+                  key: uri
+            - name: BASE_URL
+              value: http://flux.midka.dev
+            - name: CREATE_ADMIN
+              value: '1'
+            - name: ADMIN_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: miniflux-secret
+                  key: admin_username
+            - name: ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: miniflux-secret
+                  key: admin_password
+            - name: FETCH_YOUTUBE_WATCH_TIME
+              value: '1'
+            - name: INVIDIOUS_INSTANCE
+              value: 'invidious.fi'
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: 100m
+              memory: 20Mi
+            limits:
+              cpu: 200m
+              memory: 200Mi
