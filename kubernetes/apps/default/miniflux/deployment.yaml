@@ -60,3 +60,35 @@ spec:
             limits:
               cpu: 200m
               memory: 200Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: miniflux
+spec:
+  type: ClusterIP
+  selector:
+    app: miniflux
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: miniflux
+  namespace: default
+spec:
+  entryPoints:
+    - websecure
+    - web
+  routes:
+    - match: Host(`flux.midka.dev`)
+      kind: Rule
+      services:
+        - name: miniflux
+          port: 80
+          kind: Service
+  tls:
+    certResolver: le
