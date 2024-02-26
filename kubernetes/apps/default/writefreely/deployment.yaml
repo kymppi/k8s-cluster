@@ -23,7 +23,7 @@ spec:
         - name: ghcr-io-registry
       containers:
         - name: writefreely
-          image: ghcr.io/kymppi/writefreely-docker:v0.14.0
+          image: ghcr.io/kymppi/writefreely-docker:v0.15.0
           imagePullPolicy: Always
           volumeMounts:
             - name: config
