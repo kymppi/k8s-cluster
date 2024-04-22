@@ -94,6 +94,8 @@ data:
     }
   runtime.yaml: |
     overrides:
+      1:
+        ingestion_rate: 300000
       2:
         ingestion_rate: 50000
 metadata:
