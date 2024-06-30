@@ -6,6 +6,10 @@ data:
     auth_enabled: true
     target: all
 
+    server:
+      http_listen_address: 0.0.0.0
+      http_listen_port: 3100
+
     storage_config:
       tsdb_shipper:
         active_index_directory: /loki/index
@@ -13,6 +17,11 @@ data:
       aws:
         s3: ${AWS_ENDPOINT}
         s3forcepathstyle: true
+
+    ruler:
+      storage:
+        s3:
+          bucketnames: loki-ruler
 
     compactor:
       working_directory: /tmp/loki/compactor
@@ -24,6 +33,14 @@ data:
           store: memberlist
       replication_factor: 1
       path_prefix: /loki
+      storage:
+        s3:
+          endpoint: ${AWS_ENDPOINT}
+          insecure: false
+          bucketnames: loki
+          access_key_id: ${AWS_ACCESS_KEY_ID}
+          secret_access_key: ${AWS_SECRET_ACCESS_KEY}
+          s3forcepathstyle: true
 
     memberlist:
       cluster_label: loki

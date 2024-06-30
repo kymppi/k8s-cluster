@@ -28,7 +28,7 @@ spec:
             - mountPath: /etc/nginx/nginx.conf
               name: loki-config
               subPath: nginx.conf
-        - name: mimir
+        - name: loki
           image: grafana/loki:3.0.0
           imagePullPolicy: IfNotPresent
           command:
@@ -43,6 +43,22 @@ spec:
             - containerPort: 7946
               name: memberlist
               protocol: TCP
+          env:
+            - name: AWS_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  key: aws_endpoint
+                  name: grafana-loki-secrets
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: aws_secret_access_key
+                  name: grafana-loki-secrets
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  key: aws_access_key_id
+                  name: grafana-loki-secrets
           readinessProbe:
             failureThreshold: 3
             httpGet:
