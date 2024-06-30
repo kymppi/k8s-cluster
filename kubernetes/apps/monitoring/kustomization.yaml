@@ -7,3 +7,4 @@ resources:
   - ./mimir
   - ./grafana-multitenancy
   - ./kube-prometheus-stack
+  - ./loki

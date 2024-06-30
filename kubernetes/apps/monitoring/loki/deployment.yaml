@@ -1,0 +1,122 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: loki
+  name: loki
+  namespace: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: loki
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: loki
+    spec:
+      containers:
+        - name: nginx-auth-proxy
+          image: nginx:1.25-alpine
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              name: http-nginx
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /etc/nginx/nginx.conf
+              name: loki-config
+              subPath: nginx.conf
+        - name: mimir
+          image: grafana/loki:3.0.0
+          imagePullPolicy: IfNotPresent
+          command:
+            - '/bin/loki'
+            - '-config.expand-env=true'
+            - '-config.file=/etc/config/loki.yaml'
+            - '-runtime-config.file=/etc/config/runtime.yaml'
+          ports:
+            - containerPort: 3100
+              name: http-loki
+              protocol: TCP
+            - containerPort: 7946
+              name: memberlist
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /ready
+              port: 3100
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 2
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            successThreshold: 1
+            tcpSocket:
+              port: 3100
+            timeoutSeconds: 1
+          volumeMounts:
+            - mountPath: /etc/config/
+              name: loki-config
+              readOnly: true
+      volumes:
+        - name: loki-config
+          configMap:
+            name: grafana-loki-config
+            items:
+              - key: loki.yaml
+                path: loki.yaml
+              - key: nginx.conf
+                path: nginx.conf
+              - key: runtime.yaml
+                path: runtime.yaml
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: loki
+  name: loki
+  namespace: monitoring
+spec:
+  ports:
+    - name: http-nginx
+      port: 80
+      protocol: TCP
+      targetPort: 80
+    - name: http-loki
+      port: 3100
+      protocol: TCP
+      targetPort: 3100
+    - name: memberlist
+      port: 7946
+      protocol: TCP
+      targetPort: 7946
+  selector:
+    app: loki
+  type: ClusterIP
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: grafana-loki
+  namespace: monitoring
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`loki.midka.dev`)
+      services:
+        - name: loki
+          port: 80
+          kind: Service
+  tls:
+    certResolver: le
