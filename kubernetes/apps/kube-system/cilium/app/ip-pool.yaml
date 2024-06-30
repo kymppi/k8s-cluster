@@ -5,4 +5,4 @@ metadata:
   name: 'pool'
 spec:
   cidrs:
-    - cidr: '65.21.101.130/32'
+    - cidr: '65.21.101.132/32'
