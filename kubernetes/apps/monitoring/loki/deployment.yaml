@@ -32,7 +32,7 @@ spec:
           image: grafana/loki:3.0.0
           imagePullPolicy: IfNotPresent
           command:
-            - '/bin/loki'
+            - '/usr/bin/loki'
             - '-config.expand-env=true'
             - '-config.file=/etc/config/loki.yaml'
             - '-runtime-config.file=/etc/config/runtime.yaml'
