@@ -32,7 +32,7 @@ spec:
           image: grafana/tempo:2.5.0
           imagePullPolicy: IfNotPresent
           command:
-            - '/usr/bin/tempo'
+            - '/tempo'
             - '-config.expand-env=true'
             - '-config.file=/etc/config/tempo.yaml'
             - '-runtime-config.file=/etc/config/runtime.yaml'
