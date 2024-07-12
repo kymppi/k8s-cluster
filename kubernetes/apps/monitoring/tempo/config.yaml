@@ -10,44 +10,21 @@ data:
       http_listen_address: 0.0.0.0
       http_listen_port: 3200
 
-    storage_config:
-      tsdb_shipper:
-        active_index_directory: /tempo/index
-        cache_location: /tempo/index_cache
-
-    schema_config:
-      configs:
-      - from: 2020-05-15
-        store: tsdb
-        object_store: s3
-        schema: v13
-        index:
-          prefix: index_
-          period: 24h
-
-    ruler:
-      storage:
+    storage:
+      trace:
+        backend: s3
         s3:
-          bucketnames: tempo-ruler
+          bucket: tempo
+          endpoint: ${AWS_ENDPOINT}
+          access_key: ${AWS_ACCESS_KEY_ID}
+          secret_key: ${AWS_SECRET_ACCESS_KEY}
+          forcepathstyle: true
+          insecure: false
 
     compactor:
-      working_directory: /tmp/tempo/compactor
-      compaction_interval: 30m
-
-    common:
       ring:
         kvstore:
           store: memberlist
-      replication_factor: 1
-      path_prefix: /tempo
-      storage:
-        s3:
-          endpoint: ${AWS_ENDPOINT}
-          insecure: false
-          bucketnames: tempo
-          access_key_id: ${AWS_ACCESS_KEY_ID}
-          secret_access_key: ${AWS_SECRET_ACCESS_KEY}
-          s3forcepathstyle: true
 
     memberlist:
       cluster_label: loki
@@ -114,14 +91,6 @@ data:
       }
     }
   runtime.yaml: |
-    overrides:
-      1:
-        ingestion_rate_mb: 10
-        max_streams_per_user: 100000
-        max_chunks_per_query: 100000
-      2:
-        max_streams_per_user: 100000
-        max_chunks_per_query: 100000
 metadata:
   name: grafana-tempo-config
   namespace: monitoring
