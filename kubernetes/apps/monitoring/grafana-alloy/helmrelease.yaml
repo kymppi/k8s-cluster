@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: grafana-alloy
-  namespace: default
+  namespace: monitoring
 spec:
   interval: 15m
   chart:
@@ -197,9 +197,6 @@ spec:
               }
             }
           }
-      envFrom:
-        - secretRef:
-            name: grafana-alloy-secret
       mounts:
         varlog: true
         dockercontainers: true
