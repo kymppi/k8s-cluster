@@ -3,8 +3,7 @@ apiVersion: v1
 kind: ConfigMap
 data:
   tempo.yaml: |
-    auth_enabled: true
-    target: all
+    multitenancy_enabled: true
 
     server:
       http_listen_address: 0.0.0.0
@@ -90,7 +89,6 @@ data:
         }
       }
     }
-  runtime.yaml: |
 metadata:
   name: grafana-tempo-config
   namespace: monitoring

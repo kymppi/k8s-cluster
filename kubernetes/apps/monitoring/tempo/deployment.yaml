@@ -35,7 +35,6 @@ spec:
             - '/tempo'
             - '-config.expand-env=true'
             - '-config.file=/etc/config/tempo.yaml'
-            - '-runtime-config.file=/etc/config/runtime.yaml'
           ports:
             - containerPort: 3200
               name: http-tempo
@@ -90,8 +89,6 @@ spec:
                 path: tempo.yaml
               - key: nginx.conf
                 path: nginx.conf
-              - key: runtime.yaml
-                path: runtime.yaml
 ---
 apiVersion: v1
 kind: Service
