@@ -97,7 +97,7 @@ data:
       1:
         ingestion_rate: 300000
       2:
-        ingestion_rate: 50000
+        ingestion_rate: 350000
 metadata:
   name: grafana-mimir-config
   namespace: monitoring
