@@ -112,7 +112,7 @@ spec:
       protocol: TCP
       targetPort: 7946
   selector:
-    app: loki
+    app: tempo
   type: ClusterIP
 ---
 apiVersion: traefik.containo.us/v1alpha1
@@ -128,7 +128,7 @@ spec:
     - kind: Rule
       match: Host(`tempo.midka.dev`)
       services:
-        - name: loki
+        - name: tempo
           port: 80
           kind: Service
   tls:
