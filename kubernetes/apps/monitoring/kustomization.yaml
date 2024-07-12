@@ -6,6 +6,7 @@ resources:
   - ./grafana
   - ./mimir
   - ./grafana-multitenancy
-  - ./kube-prometheus-stack
+  #- ./kube-prometheus-stack
   - ./loki
   - ./tempo
+  - ./grafana-alloy
