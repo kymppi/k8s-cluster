@@ -1,0 +1,138 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: tempo
+  name: tempo
+  namespace: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: tempo
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: tempo
+    spec:
+      containers:
+        - name: nginx-auth-proxy
+          image: nginx:1.25-alpine
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              name: http-nginx
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /etc/nginx/nginx.conf
+              name: tempo-config
+              subPath: nginx.conf
+        - name: tempo
+          image: grafana/tempo:2.5.0
+          imagePullPolicy: IfNotPresent
+          command:
+            - '/usr/bin/tempo'
+            - '-config.expand-env=true'
+            - '-config.file=/etc/config/tempo.yaml'
+            - '-runtime-config.file=/etc/config/runtime.yaml'
+          ports:
+            - containerPort: 3200
+              name: http-tempo
+              protocol: TCP
+            - containerPort: 7946
+              name: memberlist
+              protocol: TCP
+          env:
+            - name: AWS_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  key: aws_endpoint
+                  name: grafana-tempo-secrets
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: aws_secret_access_key
+                  name: grafana-tempo-secrets
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  key: aws_access_key_id
+                  name: grafana-tempo-secrets
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /ready
+              port: 3200
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 2
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            successThreshold: 1
+            tcpSocket:
+              port: 3200
+            timeoutSeconds: 1
+          volumeMounts:
+            - mountPath: /etc/config/
+              name: tempo-config
+              readOnly: true
+      volumes:
+        - name: tempo-config
+          configMap:
+            name: grafana-tempo-config
+            items:
+              - key: tempo.yaml
+                path: tempo.yaml
+              - key: nginx.conf
+                path: nginx.conf
+              - key: runtime.yaml
+                path: runtime.yaml
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: tempo
+  name: tempo
+  namespace: monitoring
+spec:
+  ports:
+    - name: http-nginx
+      port: 80
+      protocol: TCP
+      targetPort: 80
+    - name: http-tempo
+      port: 3200
+      protocol: TCP
+      targetPort: 3200
+    - name: memberlist
+      port: 7946
+      protocol: TCP
+      targetPort: 7946
+  selector:
+    app: loki
+  type: ClusterIP
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: grafana-tempo
+  namespace: monitoring
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`tempo.midka.dev`)
+      services:
+        - name: loki
+          port: 80
+          kind: Service
+  tls:
+    certResolver: le
