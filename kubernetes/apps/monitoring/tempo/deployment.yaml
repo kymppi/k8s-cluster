@@ -39,7 +39,7 @@ spec:
             - containerPort: 3200
               name: http-tempo
               protocol: TCP
-            - containerPort: 4317
+            - containerPort: 4318
               name: http-otlp
               protocol: TCP
             - containerPort: 7946
@@ -111,9 +111,9 @@ spec:
       protocol: TCP
       targetPort: 3200
     - name: http-otlp
-      port: 4317
+      port: 4318
       protocol: TCP
-      targetPort: 4317
+      targetPort: 4318
     - name: memberlist
       port: 7946
       protocol: TCP
