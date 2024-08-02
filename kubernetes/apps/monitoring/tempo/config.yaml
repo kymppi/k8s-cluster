@@ -89,7 +89,7 @@ data:
 
           proxy_set_header X-Scope-Orgid $x_scope_orgid;
 
-          proxy_pass http://localhost:4317/;
+          proxy_pass http://localhost:4318/;
         }
 
         location /auth {
