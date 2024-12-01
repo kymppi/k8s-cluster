@@ -6,5 +6,5 @@ resources:
   #- ./whoami
   - ./writefreely
   - ./xbackbone
-  - ./adventofcode
+  #- ./adventofcode
   - ./miniflux
